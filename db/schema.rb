@@ -10,10 +10,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_04_134602) do
+ActiveRecord::Schema.define(version: 2018_06_04_135612) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "auctions", force: :cascade do |t|
+    t.datetime "starting_time"
+    t.datetime "ending_time"
+    t.integer "price_per_bid"
+    t.boolean "is_current"
+    t.integer "min_number_bids"
+    t.bigint "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_auctions_on_product_id"
+  end
+
+  create_table "bids", force: :cascade do |t|
+    t.integer "price"
+    t.boolean "won"
+    t.bigint "auction_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["auction_id"], name: "index_bids_on_auction_id"
+    t.index ["user_id"], name: "index_bids_on_user_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.integer "rrp"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -28,8 +58,14 @@ ActiveRecord::Schema.define(version: 2018_06_04_134602) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "username"
+    t.string "address"
+    t.integer "wallet"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "auctions", "products"
+  add_foreign_key "bids", "auctions"
+  add_foreign_key "bids", "users"
 end
