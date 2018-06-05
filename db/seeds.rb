@@ -18,10 +18,10 @@ user2 = User.create!(username:"Tony", email:"tony@gmail.com", address:"Glasgow",
 user3 = User.create!(username:"Mitch", email:"mitch@gmail.com", address:"Paris", password: "password")
 user4 = User.create!(username:"Abel", email:"abel@gmail.com", address:"Metz", password: "password")
 
-user1.wallet.balance_cents = "10000"
-user2.wallet.balance_cents = "2000"
-user3.wallet.balance_cents = "100000"
-user4.wallet.balance_cents = "50000"
+user1.wallet.update(balance_cents: 10000)
+user2.wallet.update(balance_cents: 200)
+user3.wallet.update(balance_cents: 100000)
+user4.wallet.update(balance_cents: 50000)
 
 product1 = Product.create!(name:"IPhone X", recommended_retail_price: "100000")
 product2 = Product.create!(name:"Applewatch", recommended_retail_price: "20000")

@@ -10,9 +10,12 @@
 <p><%= link_to "Back to auction list", auctions_path %></p>
 <p><%= link_to "Place a bid", new_auction_bid_path(@auction) %></p>
 
-<h3>Current bids on this auction: </h3>
-<ul>
-  <% current_user.bids.each do |bid|  %>
-    <li><%= humanized_money_with_symbol(bid.price) %></li>
+<h3>Your current bids on this auction: </h3>
+
+    <ul>
+  <% @auction.bids.each do |bid|  %>
+      <% if bid.user == current_user %>
+        <li><%= humanized_money_with_symbol(bid.price) %></li>
+      <% end %>
+    </ul>
   <% end %>
-</ul>

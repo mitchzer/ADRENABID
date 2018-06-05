@@ -6,3 +6,4 @@
 
 
 <p><%= link_to "My profile", user_path(current_user) if current_user != nil %></p>
+<p><%= link_to "Current auctions", auctions_path if current_user != nil %></p>
