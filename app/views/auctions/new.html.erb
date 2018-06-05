@@ -1,2 +1,13 @@
 <h1>Auctions#new</h1>
 <p>Find me in app/views/auctions/new.html.erb</p>
+
+<%= simple_form_for @auction do |f| %>
+  <%= f.input :starting_time %>
+  <%= f.input :ending_time %>
+  <%= f.input :fee_per_bid %>
+  <%= f.input :price_step %>
+  <%= f.input :status %>
+  <%= f.input :min_number_bids %>
+  <%= f.association :product %>
+  <%= f.button :submit %>
+<% end %>

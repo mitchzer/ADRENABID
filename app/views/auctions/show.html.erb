@@ -1,2 +1,10 @@
 <h1>Auctions#show</h1>
 <p>Find me in app/views/auctions/show.html.erb</p>
+
+<p>Product name: <%= @auction.product.name %></p>
+<p>RRP: <%= @auction.product.recommended_retail_price %></p>
+<p>Fee per bid: <%= @auction.fee_per_bid %></p>
+<p>Price step: <%= @auction.price_step %></p>
+<p>Status: <%= @auction.status %></p>
+
+<%= link_to "Back to auction list", auctions_path %>
