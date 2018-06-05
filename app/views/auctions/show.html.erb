@@ -6,6 +6,7 @@
 <p>Fee per bid: <%= humanized_money_with_symbol(@auction.fee_per_bid) %></p>
 <p>Price step: <%= humanized_money_with_symbol(@auction.price_step) %></p>
 <p>Status: <%= @auction.status %></p>
+<p><%= @auction.winning_user.username %> has won the auction.  He can buy the <%= @auction.product.name %> for <%= @auction.winning_bid.price %></p>
 
 <p><%= link_to "Back to auction list", auctions_path %></p>
 <p><%= link_to "Place a bid", new_auction_bid_path(@auction) %></p>

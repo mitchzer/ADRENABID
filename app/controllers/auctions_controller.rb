@@ -37,6 +37,11 @@ class AuctionsController < ApplicationController
     @auction.destroy
   end
 
+   def list_bids(auction)
+    auction.bids.first
+  end
+
+
 private
 
 def auction_params
