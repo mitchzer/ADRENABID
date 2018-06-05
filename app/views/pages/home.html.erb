@@ -3,3 +3,6 @@
 
 <p><%= link_to "Sign_up", new_user_registration_path %></p>
 <p><%= link_to "Sign_in", new_user_session_path %></p>
+
+
+<p><%= link_to "My profile", user_path(current_user) if current_user != nil %></p>
