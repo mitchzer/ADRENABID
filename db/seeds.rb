@@ -31,8 +31,8 @@ auction1 = Auction.create!(starting_time: DateTime.now - rand(1..4), ending_time
 auction2 = Auction.create!(starting_time: DateTime.now - rand(1..4), ending_time: DateTime.now + rand(1..4), fee_per_bid: "200", price_step: "20", status: "1", min_number_bids: "10", product: product2 )
 auction3 = Auction.create!(starting_time: DateTime.now - rand(1..4), ending_time: DateTime.now + rand(1..4), fee_per_bid: "500", price_step: "50", status: "2", min_number_bids: "10", product: product3 )
 
-bid1 = Bid.create!(price: "100", won: 0, auction: auction1, user: user1)
-bid2 = Bid.create!(price: "150", won: 0, auction: auction1, user: user1)
+bid1 = Bid.create!(price: "130", won: 0, auction: auction1, user: user1)
+bid2 = Bid.create!(price: "200", won: 0, auction: auction1, user: user1)
 bid3 = Bid.create!(price: "100", won: 0, auction: auction1, user: user2)
 bid4 = Bid.create!(price: "100", won: 0, auction: auction2, user: user3)
 bid5 = Bid.create!(price: "0", won: 0, auction: auction2, user: user2)
