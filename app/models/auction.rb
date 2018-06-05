@@ -17,11 +17,17 @@ class Auction < ApplicationRecord
     freq = bid_frequencies
     unique_bids = freq.select {|price, frequency| frequency == 1}
     ordered_prices = unique_bids.sort_by{ |price, frequency| price }
+    if ordered_prices.empty?
+      unique_bids = freq.select {|price, frequency| frequency == 2}
+      ordered_prices = unique_bids.sort_by{ |price, frequency| price }
+      winning_price = ordered_prices.first.first
+    else
     winning_price = ordered_prices.first.first
+    end
   end
 
   def winning_bid
-    self.bids.where(:price => winning_price).first
+    self.bids.where(:price => winning_price).order(:created_at).limit(1).first
   end
 
 
