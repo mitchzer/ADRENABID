@@ -9,10 +9,17 @@ class BidsController < ApplicationController
     @bid = Bid.new(bid_params)
     @bid.auction = @auction
     @bid.user = current_user
-    if @bid.save
-      redirect_to auction_path(@auction)
+    if current_user.wallet.balance_cents < @auction.fee_per_bid
+      flash.alert = "Recharge your wallet before !"
+      redirect_to user_path(current_user)
     else
-      render :new
+      if @bid.save
+        new_balance = current_user.wallet.balance_cents - @auction.fee_per_bid
+        current_user.wallet.update(balance_cents: new_balance)
+        redirect_to auction_path(@auction)
+      else
+        render :new
+      end
     end
   end
 
