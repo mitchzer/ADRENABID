@@ -1,0 +1,7 @@
+<h1>Bids#new</h1>
+<p>Find me in app/views/bids/new.html.erb</p>
+
+<%= simple_form_for [ @auction, @bid] do |f| %>
+  <%= f.input :price %>
+  <%= f.submit "Place a bid", class: "btn btn-primary" %>
+<% end %>
