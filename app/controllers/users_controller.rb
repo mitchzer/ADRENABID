@@ -1,8 +1,7 @@
-class UsersController < Devise::RegistrationsController
-  def create
-    super
-    if resource.save
-      resource.wallet.create!
-    end
+class UsersController < ApplicationController
+
+  def show
+    @user = User.find(params[:id])
   end
+
 end
