@@ -1,3 +1,3 @@
 class Product < ApplicationRecord
-  belongs_to :auctions
+  has_many :auctions
 end

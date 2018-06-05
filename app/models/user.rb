@@ -6,4 +6,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   validates :username, presence: true, uniqueness: true
   validates :address, presence: true
+
+  after_create :create_user_wallet
+  def create_user_wallet
+    Wallet.create(user: self)
+  end
+  
 end
