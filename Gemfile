@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 ruby '2.4.4'
 
+gem 'mailgun-ruby'
+gem "letter_opener", group: :development
 gem 'money-rails'
 gem 'bootsnap', require: false
 gem 'devise'

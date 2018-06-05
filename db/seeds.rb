@@ -13,7 +13,7 @@ Auction.destroy_all
 Product.destroy_all
 User.destroy_all
 
-user1 = User.create!(username:"Alex", email:"alex@gmail.com", address:"Frankfurt", password: "password")
+user1 = User.create!(username:"Alex", email:"abellocati@hotmail.com", address:"Frankfurt", password: "password")
 user2 = User.create!(username:"Tony", email:"tony@gmail.com", address:"Glasgow", password: "password")
 user3 = User.create!(username:"Mitch", email:"mitch@gmail.com", address:"Paris", password: "password")
 user4 = User.create!(username:"Abel", email:"abel@gmail.com", address:"Metz", password: "password")
