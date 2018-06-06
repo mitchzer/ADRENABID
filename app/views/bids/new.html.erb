@@ -16,16 +16,17 @@
 
       <ul>
       <% array = [] %>
-        <% @auction.bids.each do |bid|  %>
+        <% @auction.bids.sort_by { |b| b.price_cents }.each do |bid|  %>
             <% if bid.user == current_user %>
               <% array << humanized_money_with_symbol(bid.price) %>
             <% end %>
-          <% good_array = array.sort! %>
-          <% good_array.each do |price| %>
+          <% array.each do |price| %>
             <li><%= price %></li>
           <% end %>
-      <% end %>
+        <% array = [] %>
+        <% end %>
       </ul>
+
     </div>
   </div>
 </div>
