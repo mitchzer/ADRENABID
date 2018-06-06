@@ -1,9 +1,11 @@
 class Auction < ApplicationRecord
   has_many :bids
   belongs_to :product
+  monetize :fee_per_bid_cents
+  monetize :price_step_cents
 
   def price_array
-    self.bids.all.map(&:price)
+    self.bids.all.map(&:price_cents)
   end
 
   def bid_frequencies
@@ -27,7 +29,7 @@ class Auction < ApplicationRecord
   end
 
   def winning_bid
-    self.bids.where(:price => winning_price).order(:created_at).limit(1).first
+    self.bids.where(:price_cents => winning_price).order(:created_at).limit(1).first
   end
 
 
