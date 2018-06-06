@@ -37,4 +37,12 @@ class Auction < ApplicationRecord
     User.where(:id => id).first
   end
 
+  def auction_status
+    if DateTime.now < self.ending_time
+      self.status = 1
+      save
+    else
+    end
+  end
+
 end
