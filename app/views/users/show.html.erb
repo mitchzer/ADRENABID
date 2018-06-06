@@ -4,5 +4,7 @@
 <p>Email address: <%= @user.email %></p>
 <p>Shipping address: <%= @user.address %></p>
 <p>Current balance: <%= humanized_money_with_symbol(@user.wallet.balance) %></p>
+<p><%= link_to "Charge your wallet", new_order_path %></p>
+
 <p><%= link_to "Delete my account", user_registration_path, method: :delete, :data => {:confirm => "You Sure?"} %></p>
 <p><%= link_to "Edit my profile", edit_user_registration_path %></p>
