@@ -35,8 +35,8 @@ class Auction < ApplicationRecord
 
 # winning_user returns user object
   def winning_user
-    id = winning_bid.user_id
-    User.where(:id => id).first
+      id = winning_bid.user_id
+      User.where(:id => id).first
   end
 
   def auction_status
