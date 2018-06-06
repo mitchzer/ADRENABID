@@ -13,10 +13,15 @@
 
 <h3>Your current bids on this auction: </h3>
 
-    <ul>
+<ul>
+<% array = [] %>
   <% @auction.bids.each do |bid|  %>
       <% if bid.user == current_user %>
-        <li><%= humanized_money_with_symbol(bid.price) %></li>
+        <% array << humanized_money_with_symbol(bid.price) %>
       <% end %>
-    </ul>
-  <% end %>
+    <% array.sort! %>
+    <% array.each do |price| %>
+      <li><%= price %></li>
+    <% end %>
+<% end %>
+</ul>
