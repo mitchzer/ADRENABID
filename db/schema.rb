@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_06_100624) do
+
+ActiveRecord::Schema.define(version: 2018_06_06_102509) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,8 +20,8 @@ ActiveRecord::Schema.define(version: 2018_06_06_100624) do
   create_table "auctions", force: :cascade do |t|
     t.datetime "starting_time"
     t.datetime "ending_time"
-    t.integer "fee_per_bid"
-    t.integer "price_step"
+    t.integer "fee_per_bid_cents"
+    t.integer "price_step_cents"
     t.integer "status"
     t.integer "min_number_bids"
     t.bigint "product_id"
@@ -29,7 +31,7 @@ ActiveRecord::Schema.define(version: 2018_06_06_100624) do
   end
 
   create_table "bids", force: :cascade do |t|
-    t.integer "price"
+    t.integer "price_cents"
     t.boolean "won"
     t.bigint "auction_id"
     t.bigint "user_id"
@@ -40,7 +42,7 @@ ActiveRecord::Schema.define(version: 2018_06_06_100624) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "amount"
+    t.integer "amount_cents"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -49,7 +51,7 @@ ActiveRecord::Schema.define(version: 2018_06_06_100624) do
 
   create_table "products", force: :cascade do |t|
     t.string "name"
-    t.integer "recommended_retail_price"
+    t.integer "recommended_retail_price_cents"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
