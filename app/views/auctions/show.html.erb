@@ -1,5 +1,7 @@
 <% @auction.auction_status %>
-
+<% if @auction.status == 2 %>
+<p>Auction complete</p>
+<% elsif @auction.status == 1 %>
 <h1>Auctions#show</h1>
 <p>Find me in app/views/auctions/show.html.erb</p>
 <p>Product name: <%= @auction.product.name %></p>
@@ -37,12 +39,13 @@ function startTimer(duration, display) {
         minutes = (diff / 60) | 0;
         seconds = (diff % 60) | 0;
         hours = minutes / 60 | 0;
+        days = hours / 24 | 0;
 
 
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
 
-        display.textContent = hours + " hours " + (minutes % 60) + " minutes and " + seconds + " seconds";
+        display.textContent = days + " days " + (hours % 24) + " hours " + (minutes % 60) + " minutes and " + seconds + " seconds";
 
         if (diff <= 0) {
             // add one second so that the count down starts at the full duration
@@ -56,9 +59,9 @@ function startTimer(duration, display) {
 }
 
 window.onload = function () {
-    var fiveMinutes = <%=@auction.ending_time - DateTime.now%>
+    var timeLeft = <%=@auction.ending_time - DateTime.now%>
         display = document.querySelector('#time');
-    startTimer(fiveMinutes, display);
+    startTimer(timeLeft, display);
 };
 
 
@@ -73,4 +76,9 @@ window.onload = function () {
         <li><%= humanized_money_with_symbol(bid.price) %></li>
       <% end %>
     </ul>
-  <% end %>
+<% end %>
+
+<% elsif @auction.status == 0 %>
+<p>Auction begins at <%= @auction.starting_time %> </p>
+
+<% end %>
