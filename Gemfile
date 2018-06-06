@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 ruby '2.4.4'
 
 gem 'pundit'
+gem 'stripe'
 gem 'mailgun-ruby'
 gem "letter_opener", group: :development
 gem 'money-rails'

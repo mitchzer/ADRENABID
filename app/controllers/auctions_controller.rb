@@ -1,4 +1,5 @@
 class AuctionsController < ApplicationController
+  skip_before_action :authenticate_user!
   def index
     @auctions = policy_scope(Auction)
   end
