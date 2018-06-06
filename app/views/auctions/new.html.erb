@@ -4,8 +4,8 @@
 <%= simple_form_for @auction do |f| %>
   <%= f.input :starting_time %>
   <%= f.input :ending_time %>
-  <%= f.input :fee_per_bid %>
-  <%= f.input :price_step %>
+  <%= f.input :fee_per_bid_cents %>
+  <%= f.input :price_step_cents %>
   <%= f.input :status %>
   <%= f.input :min_number_bids %>
   <%= f.association :product %>
