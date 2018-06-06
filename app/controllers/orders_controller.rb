@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+skip_after_action :verify_policy_scoped, :verify_authorized
   def show
     @order = current_user.orders.paid.find(params[:id])
   end
