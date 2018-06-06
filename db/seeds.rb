@@ -27,7 +27,7 @@ product1 = Product.create!(name:"IPhone X", recommended_retail_price_cents:  100
 product2 = Product.create!(name: "Applewatch", recommended_retail_price_cents: 20000)
 product3 = Product.create!(name:"Rolex", recommended_retail_price_cents: 700000)
 
-auction1 = Auction.create!(starting_time: DateTime.now - rand(1..4), ending_time: DateTime.now + rand(1..4), fee_per_bid_cents: 25, price_step_cents: 10, status: 0, min_number_bids: 20, product: product1 )
+auction1 = Auction.create!(starting_time: DateTime.now - 1, ending_time: (DateTime.now + 0.0003), fee_per_bid_cents: 25, price_step_cents: 10, status: 0, min_number_bids: 20, product: product1 )
 auction2 = Auction.create!(starting_time: DateTime.now - rand(1..4), ending_time: DateTime.now + rand(1..4), fee_per_bid_cents: 10, price_step_cents: 10, status: 1, min_number_bids: 10, product: product2 )
 auction3 = Auction.create!(starting_time: DateTime.now - rand(1..4), ending_time: DateTime.now + rand(1..4), fee_per_bid_cents: 100, price_step_cents: 100, status: 2, min_number_bids: 10, product: product3 )
 
