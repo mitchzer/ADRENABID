@@ -1,19 +1,21 @@
 class AuctionsController < ApplicationController
   def index
-    @auctions = Auction.all
-    authorize @auctions
+    @auctions = policy_scope(Auction)
   end
 
   def show
     @auction = Auction.find(params[:id])
+    authorize @auction
   end
 
   def new
     @auction = Auction.new
+    authorize @auction
   end
 
   def create
     @auction = Auction.new(auction_params)
+    authorize @auction
     if @auction.save
       redirect_to auction_path(@auction)
     else
@@ -23,6 +25,7 @@ class AuctionsController < ApplicationController
 
   def edit
     @auction = Auction.find(params[:id])
+    authorize @auction
   end
 
   def update
@@ -33,7 +36,7 @@ class AuctionsController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
     @auction = Auction.find(params[:id])
     @auction.destroy
   end

@@ -37,18 +37,21 @@ class ApplicationPolicy
   def scope
     Pundit.policy_scope!(user, record.class)
   end
-end
-  class Scope
-    attr_reader :user #, :scop
 
-    def initialize(user)
+  class Scope
+    attr_reader :user, :scope
+
+    def initialize(user, scope)
       @user = user
-      # @scope = scope
+      @scope = scope
     end
 
-    # def resolve
-    #   if user.admin?
-    #     scope.all
-    # end
+    def resolve
+      scope
+    end
   end
 
+  def user_admin?
+    user.admin
+  end
+end

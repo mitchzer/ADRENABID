@@ -1,40 +1,31 @@
 class AuctionPolicy < ApplicationPolicy
-  def index
-
-  end
 
   def show
-
+   # true
   end
 
-  def new
-
+  def create?
+    # record
+    # user
+    user_admin?
   end
 
-  def create
-    user_is_admin?
+  def update?
+    user_admin?
   end
 
-  def edit
-    user_is_admin?
+  def destroy?
+    user_admin?
   end
 
-  def update
-    user_is_admin?
-  end
+  class Scope < Scope
+    def resolve
+      scope.all
 
-  def delete
-    user_is_admin?
-  end
 
-  def list_bids(auction)
-
-  end
-
-  private
-
-  def user_is_admin?
-    user.admin = true
+      # For a multi-tenant SaaS app, you may want to use:
+      # scope.where(user: user)
+    end
   end
 
 end
