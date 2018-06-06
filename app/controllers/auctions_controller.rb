@@ -1,6 +1,7 @@
 class AuctionsController < ApplicationController
   def index
     @auctions = Auction.all
+    authorize @auctions
   end
 
   def show

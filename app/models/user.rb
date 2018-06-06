@@ -9,8 +9,15 @@ class User < ApplicationRecord
   validates :address, presence: true
 
   after_create :create_user_wallet
+  after_create :send_welcome_email
+
   def create_user_wallet
     Wallet.create(user: self)
   end
 
+private
+
+  def send_welcome_email
+    UserMailer.welcome(self).deliver_now
+  end
 end
