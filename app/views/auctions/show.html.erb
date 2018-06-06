@@ -11,18 +11,19 @@
 <p>Status: <%= @auction.status %></p>
 <h3>Your current bids on this auction: </h3>
 
-<ul>
-<% array = [] %>
-  <% @auction.bids.each do |bid|  %>
-      <% if bid.user == current_user %>
-        <% array << humanized_money_with_symbol(bid.price) %>
-      <% end %>
-    <% array.sort! %>
-    <% array.each do |price| %>
-      <li><%= price %></li>
-    <% end %>
-<% end %>
-</ul>
+      <ul>
+      <% array = [] %>
+        <% @auction.bids.sort_by { |b| b.price_cents }.each do |bid|  %>
+            <% if bid.user == current_user %>
+              <% array << humanized_money_with_symbol(bid.price) %>
+            <% end %>
+          <% array.each do |price| %>
+            <li><%= price %></li>
+          <% end %>
+        <% array = [] %>
+        <% end %>
+      </ul>
+
 <p>
   <%  if @auction.bids.count == 0 %>
   No bids were placed on <%= @auction.product.name %>!
