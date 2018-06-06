@@ -2,9 +2,9 @@
 <p>Find me in app/views/auctions/show.html.erb</p>
 
 <p>Product name: <%= @auction.product.name %></p>
-<p>RRP: <%= humanized_money_with_symbol(@auction.product.recommended_retail_price_cents) %></p>
-<p>Fee per bid: <%= humanized_money_with_symbol(@auction.fee_per_bid_cents) %></p>
-<p>Price step: <%= humanized_money_with_symbol(@auction.price_step_cents) %></p>
+<p>RRP: <%= humanized_money_with_symbol(@auction.product.recommended_retail_price) %></p>
+<p>Fee per bid: <%= humanized_money_with_symbol(@auction.fee_per_bid) %></p>
+<p>Price step: <%= humanized_money_with_symbol(@auction.price_step) %></p>
 <p>Status: <%= @auction.status %></p>
 <p><%= @auction.winning_user.username %> has won the auction.  He can buy the <%= @auction.product.name %> for <%= @auction.winning_bid.price %></p>
 
@@ -16,7 +16,7 @@
     <ul>
   <% @auction.bids.each do |bid|  %>
       <% if bid.user == current_user %>
-        <li><%= humanized_money_with_symbol(bid.price_cents) %></li>
+        <li><%= humanized_money_with_symbol(bid.price) %></li>
       <% end %>
     </ul>
   <% end %>
