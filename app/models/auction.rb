@@ -40,10 +40,15 @@ class Auction < ApplicationRecord
   end
 
   def auction_status
-    if DateTime.now < self.ending_time
+    if DateTime.now < self.ending_time && DateTime.now > self.starting_time
       self.status = 1
       save
+    elsif DateTime.now > self.ending_time
+      self.status = 2
+      save
     else
+      self.status = 0
+      save
     end
   end
 
