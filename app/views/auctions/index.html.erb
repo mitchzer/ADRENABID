@@ -11,7 +11,8 @@
 
     <% auction.auction_status %>
     <li><%= link_to auction.product.name, auction_path(auction) %></li>
-      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://picsum.photos/500/500');">
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),  url('https://picsum.photos/500/500');">
+        <%= cl_image_tag("chhllfh7w8mhiy51tuok.jpg") %>
         <div class="card-category">Amazing</div>
         <div class="card-description">
           <h2>Awesome price, awesome deal.</h2>
