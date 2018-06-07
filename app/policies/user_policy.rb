@@ -4,8 +4,8 @@ class UserPolicy < ApplicationPolicy
     user_admin?
   end
 
-  def show
-    record.user == user  || user_admin?
+  def show?
+    record == user || user_admin?
   end
 
   def create?

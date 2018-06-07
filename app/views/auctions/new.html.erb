@@ -8,6 +8,8 @@
   <%= f.input :price_step_cents %>
   <%= f.input :status %>
   <%= f.input :min_number_bids %>
+  <%= f.input :photo %>
+  <%= f.input :photo_cache, as: :hidden %>
   <%= f.association :product %>
   <%= f.button :submit %>
 <% end %>
