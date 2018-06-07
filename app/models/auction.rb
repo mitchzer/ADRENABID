@@ -3,6 +3,7 @@ class Auction < ApplicationRecord
   belongs_to :product
   monetize :fee_per_bid_cents
   monetize :price_step_cents
+  mount_uploader :photo, PhotoUploader
 
   def price_array
     self.bids.all.map(&:price_cents)
