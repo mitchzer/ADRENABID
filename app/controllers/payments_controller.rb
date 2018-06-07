@@ -1,6 +1,8 @@
 class PaymentsController < ApplicationController
   before_action :set_order
   skip_after_action :verify_policy_scoped, :verify_authorized
+  after_action :send_charging_account, only: [:create]
+
   def new
   end
 
@@ -30,5 +32,9 @@ private
 
   def set_order
     @order = current_user.orders.pending.find(params[:order_id])
+  end
+
+   def send_charging_account
+    UserMailer.charging_account(current_user).deliver_now
   end
 end

@@ -12,7 +12,7 @@ class UserMailer < ApplicationMailer
     # This will render a view in `app/views/user_mailer`!
   end
 
-  def charge_email_notice(user)
+  def charging_account(user)
     @user = user
     mail(to: @user.email, subject: 'Adrenabid Account Deposit Request.')
   end
