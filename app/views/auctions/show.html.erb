@@ -1,7 +1,17 @@
 <% @auction.auction_status %>
 <% if @auction.status == 2 %>
-<p>Auction complete</p>
+  <p>Auction complete</p>
+
+  <p>
+    <%  if @auction.bids.count == 0 %>
+      No bids were placed on <%= @auction.product.name %>!
+    <% else %>
+      <%= @auction.winning_user.username %> has won the auction.  He can buy the <%= @auction.product.name %> for <%= @auction.winning_bid.price %>
+    <% end %>
+  </p>
+
 <% elsif @auction.status == 1 %>
+
 <h1>Auctions#show</h1>
 <p>Find me in app/views/auctions/show.html.erb</p>
 <p>Product name: <%= @auction.product.name %></p>
@@ -29,10 +39,14 @@
   No bids were placed on <%= @auction.product.name %>!
   <% else %>
   <%= @auction.winning_user.username %> has won the auction.  He can buy the <%= @auction.product.name %> for <%= @auction.winning_bid.price %></p>
-  <% end %>
 
-<p><%= link_to "Back to auction list", auctions_path %></p>
-<p><%= link_to "Place a bid", new_auction_bid_path(@auction) %></p>
+  <% end %>
+  </ul>
+
+
+  <p><%= link_to "Back to auction list", auctions_path %></p>
+  <p><%= link_to "Place a bid", new_auction_bid_path(@auction) %></p>
+
 
 
     <div>Auction ends in <span id="time"></span>!</div>
@@ -40,50 +54,48 @@
 <br>
 <p><%= link_to "Check my profile", user_path(current_user) if current_user != nil %></p>
 
+  <script>
+  function startTimer(duration, display) {
+      var start = Date.now(),
+          diff,
+          minutes,
+          seconds;
+      function timer() {
+          // get the number of seconds that have elapsed since
+          // startTimer() was called
+          diff = duration - (((Date.now() - start) / 1000) | 0);
+
+          // does the same job as parseInt truncates the float
+          minutes = (diff / 60) | 0;
+          seconds = (diff % 60) | 0;
+          hours = minutes / 60 | 0;
+          days = hours / 24 | 0;
 
 
-<script>
-function startTimer(duration, display) {
-    var start = Date.now(),
-        diff,
-        minutes,
-        seconds;
-    function timer() {
-        // get the number of seconds that have elapsed since
-        // startTimer() was called
-        diff = duration - (((Date.now() - start) / 1000) | 0);
+          minutes = minutes < 10 ? "0" + minutes : minutes;
+          seconds = seconds < 10 ? "0" + seconds : seconds;
 
-        // does the same job as parseInt truncates the float
-        minutes = (diff / 60) | 0;
-        seconds = (diff % 60) | 0;
-        hours = minutes / 60 | 0;
-        days = hours / 24 | 0;
+          display.textContent = days + " days " + (hours % 24) + " hours " + (minutes % 60) + " minutes and " + seconds + " seconds";
 
+          if (diff <= 0) {
+              // add one second so that the count down starts at the full duration
+              // example 05:00 not 04:59
+              window.location.reload(false);
+          }
+      };
+      // we don't want to wait a full second before the timer starts
+      timer();
+      setInterval(timer, 1000);
+  }
 
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-
-        display.textContent = days + " days " + (hours % 24) + " hours " + (minutes % 60) + " minutes and " + seconds + " seconds";
-
-        if (diff <= 0) {
-            // add one second so that the count down starts at the full duration
-            // example 05:00 not 04:59
-            window.location.reload(false);
-        }
-    };
-    // we don't want to wait a full second before the timer starts
-    timer();
-    setInterval(timer, 1000);
-}
-
-window.onload = function () {
-    var timeLeft = <%=@auction.ending_time - DateTime.now%>
-        display = document.querySelector('#time');
-    startTimer(timeLeft, display);
-};
+  window.onload = function () {
+      var timeLeft = <%=@auction.ending_time - DateTime.now%>
+          display = document.querySelector('#time');
+      startTimer(timeLeft, display);
+  };
 
 
-</script>
+  </script>
 
 
 
