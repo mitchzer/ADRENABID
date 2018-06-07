@@ -33,13 +33,14 @@ auction3 = Auction.create!(starting_time: DateTime.now - rand(1..4), ending_time
 
 bid1 = Bid.create!(price_cents: 130, won: 0, auction: auction1, user: user1)
 bid2 = Bid.create!(price_cents: 200, won: 0, auction: auction1, user: user1)
-bid3 = Bid.create!(price_cents: 100, won: 0, auction: auction1, user: user2)
-bid4 = Bid.create!(price_cents: 100, won: 0, auction: auction2, user: user3)
-bid5 = Bid.create!(price_cents: 0, won: 0, auction: auction2, user: user2)
-bid6 = Bid.create!(price_cents: 0, won: 0, auction: auction1, user: user3)
-bid7 = Bid.create!(price_cents: 0, won: 0, auction: auction1, user: user3)
-bid8 = Bid.create!(price_cents: 120, won: 0, auction: auction1, user: user2)
 bid9 = Bid.create!(price_cents: 120, won: 0, auction: auction1, user: user1)
-bid10 = Bid.create!(price_cents: 300, won: 0, auction: auction1, user: user2)
+
+bid6 = Bid.create!(price_cents: 0, won: 0, auction: auction1, user: user3)
 bid11 = Bid.create!(price_cents: 300, won: 0, auction: auction1, user: user3)
+bid4 = Bid.create!(price_cents: 100, won: 0, auction: auction2, user: user3)
+
+bid8 = Bid.create!(price_cents: 120, won: 0, auction: auction1, user: user2)
+bid10 = Bid.create!(price_cents: 300, won: 0, auction: auction1, user: user2)
 bid12 = Bid.create!(price_cents: 200, won: 0, auction: auction1, user: user2)
+bid3 = Bid.create!(price_cents: 100, won: 0, auction: auction1, user: user2)
+bid5 = Bid.create!(price_cents: 0, won: 0, auction: auction2, user: user2)
