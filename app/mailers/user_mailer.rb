@@ -17,4 +17,5 @@ class UserMailer < ApplicationMailer
     @order = order
     mail(to: @user.email, subject: 'Adrenabid Account Deposit Request.')
   end
+
 end
