@@ -3,17 +3,27 @@
   <div class ="col-xs-12 col-sm-6 col-sm-offset-3">
 
     <div class="bidding-form">
-      <h1>Place your bid</h1>
 
+      <h1>Place your bid there</h1>
+
+      <div class="row status">
+        <div class="col-xs-6">
+          <p>Current balance: <%= humanized_money_with_symbol(current_user.wallet.balance) %> </p>
+        </div>
+        <div class="col-xs-6">
+          <p>Price of one bid: <%= humanized_money_with_symbol(@auction.fee_per_bid) %></p>
+        </div>
+      </div>
+
+      <br>
+
+      <div>
       <%= simple_form_for [ @auction, @bid ] do |f| %>
         <%= f.input :price_cents, placeholder: "Type your bidding price here in cents", label: false %>
         <%= f.submit "Bid !", class: "btn btn-primary" %>
       <% end %>
-
-      <br />
-
-      <p>Your current bids on this auction:</p>
       <br>
+      </div>
 
       <div class="row">
         <% array = [] %>
@@ -21,14 +31,34 @@
           <% if bid.user == current_user %>
             <% array << humanized_money_with_symbol(bid.price) %>
           <% end %>
-          <% array.each do |price| %>
-              <div class = "col-xs-12 col-sm-6 col-md-3">
-                <li><%= price %></li>
-                <br>
-              </div>
-          <% end %>
-          <% array = [] %>
         <% end %>
+
+
+        <% unless array.size == 0 %>
+          <div class="currentbids">
+            <div class="col-xs-12">
+              <p>You have currently <%= array.size %> bids on this auction:</p>
+            </div>
+            <br>
+            <br>
+          </div>
+            <% array.each do |price| %>
+                <div class = "col-xs-6 col-md-3">
+                  <li><%= price %></li>
+                  <br>
+                </div>
+            <% end %>
+
+        <% else %>
+            <div class="currentbids">
+            <div class="col-xs-12">
+              <p>You have not bidded here yet</p>
+            </div>
+            </div>
+            <br>
+
+        <% end %>
+
       </div>
     </div>
   </div>
