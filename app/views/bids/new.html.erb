@@ -6,27 +6,30 @@
       <h1>Place your bid</h1>
 
       <%= simple_form_for [ @auction, @bid ] do |f| %>
-      <%= f.input :price_cents, placeholder: "Type your bidding price here in cents", label: false %>
-      <%= f.submit "Bid !", class: "btn btn-primary" %>
+        <%= f.input :price_cents, placeholder: "Type your bidding price here in cents", label: false %>
+        <%= f.submit "Bid !", class: "btn btn-primary" %>
       <% end %>
 
       <br />
 
       <p>Your current bids on this auction:</p>
+      <br>
 
-      <ul>
-      <% array = [] %>
-        <% @auction.bids.sort_by { |b| b.price_cents }.each do |bid|  %>
-            <% if bid.user == current_user %>
-              <% array << humanized_money_with_symbol(bid.price) %>
-            <% end %>
-          <% array.each do |price| %>
-            <li><%= price %></li>
-          <% end %>
+      <div class="row">
         <% array = [] %>
+        <% @auction.bids.sort_by { |b| b.price_cents }.each do |bid|  %>
+          <% if bid.user == current_user %>
+            <% array << humanized_money_with_symbol(bid.price) %>
+          <% end %>
+          <% array.each do |price| %>
+              <div class = "col-xs-12 col-sm-6 col-md-3">
+                <li><%= price %></li>
+                <br>
+              </div>
+          <% end %>
+          <% array = [] %>
         <% end %>
-      </ul>
-
+      </div>
     </div>
   </div>
 </div>
