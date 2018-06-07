@@ -38,7 +38,7 @@
     <div>Auction ends in <span id="time"></span>!</div>
 <br>
 <br>
-<p><%= link_to "Check my profile", user_path %></p>
+<p><%= link_to "Check my profile", user_path(current_user) if current_user != nil %></p>
 
 
 
