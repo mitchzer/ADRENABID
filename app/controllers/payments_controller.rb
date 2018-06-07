@@ -35,6 +35,6 @@ private
   end
 
    def send_charging_account
-    UserMailer.charging_account(current_user).deliver_now
+    UserMailer.charging_account(current_user, @order).deliver_now
   end
 end
