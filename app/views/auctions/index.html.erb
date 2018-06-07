@@ -5,6 +5,30 @@
 <ul>
   <% auctions = Auction.all %>
     <% auctions.each do |auction| %>
+    <% auction.auction_status %>
     <li><%= link_to auction.product.name, auction_path(auction) %></li>
+
+      <% if auction.status == 1 %>
+
+          <div>Auction ends in <span id="auction-timer-<%= auction.id %>"></span>!</div>
+
+      <% else %>
+
+        <div>Auction not running</div>
+        <% end %>
   <% end %>
 </ul>
+
+
+<%= content_for :after_js do %>
+  <%= javascript_tag do %>
+    <% auctions.each do |auction| %>
+    if (document.querySelector("#auction-timer-<%= auction.id %>")) {
+        var timeLeft = <%= auction.ending_time - DateTime.now %>
+        var display = document.querySelector("#auction-timer-<%= auction.id %>");
+        window.app.startTimer(timeLeft, display);
+  }
+
+    <% end %>
+  <% end %>
+<% end %>

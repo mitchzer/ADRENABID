@@ -1,85 +1,90 @@
 <% @auction.auction_status %>
 <% if @auction.status == 2 %>
-<p>Auction complete</p>
-<% elsif @auction.status == 1 %>
-<h1>Auctions#show</h1>
-<p>Find me in app/views/auctions/show.html.erb</p>
-<p>Product name: <%= @auction.product.name %></p>
-<p>RRP: <%= humanized_money_with_symbol(@auction.product.recommended_retail_price) %></p>
-<p>Fee per bid: <%= humanized_money_with_symbol(@auction.fee_per_bid) %></p>
-<p>Price step: <%= humanized_money_with_symbol(@auction.price_step) %></p>
-<p>Status: <%= @auction.status %></p>
-<h3>Your current bids on this auction: </h3>
+  <p>Auction complete</p>
 
-<ul>
-<% array = [] %>
-  <% @auction.bids.each do |bid|  %>
-      <% if bid.user == current_user %>
-        <% array << humanized_money_with_symbol(bid.price) %>
-      <% end %>
-    <% array.sort! %>
-    <% array.each do |price| %>
-      <li><%= price %></li>
+  <p>
+    <%  if @auction.bids.count == 0 %>
+      No bids were placed on <%= @auction.product.name %>!
+    <% else %>
+      <%= @auction.winning_user.username %> has won the auction.  He can buy the <%= @auction.product.name %> for <%= @auction.winning_bid.price %>
     <% end %>
-<% end %>
-</ul>
-<p>
-  <%  if @auction.bids.count == 0 %>
-  No bids were placed on <%= @auction.product.name %>!
-  <% else %>
-  <%= @auction.winning_user.username %> has won the auction.  He can buy the <%= @auction.product.name %> for <%= @auction.winning_bid.price %></p>
+  </p>
+
+<% elsif @auction.status == 1 %>
+
+  <h1>Auctions#show</h1>
+  <p>Find me in app/views/auctions/show.html.erb</p>
+  <p>Product name: <%= @auction.product.name %></p>
+  <p>RRP: <%= humanized_money_with_symbol(@auction.product.recommended_retail_price) %></p>
+  <p>Fee per bid: <%= humanized_money_with_symbol(@auction.fee_per_bid) %></p>
+  <p>Price step: <%= humanized_money_with_symbol(@auction.price_step) %></p>
+  <p>Status: <%= @auction.status %></p>
+  <h3>Your current bids on this auction: </h3>
+
+  <ul>
+  <% array = [] %>
+    <% @auction.bids.each do |bid|  %>
+        <% if bid.user == current_user %>
+          <% array << humanized_money_with_symbol(bid.price) %>
+        <% end %>
+      <% array.sort! %>
+      <% array.each do |price| %>
+        <li><%= price %></li>
+      <% end %>
   <% end %>
-
-<p><%= link_to "Back to auction list", auctions_path %></p>
-<p><%= link_to "Place a bid", new_auction_bid_path(@auction) %></p>
+  </ul>
 
 
-    <div>Auction ends in <span id="time"></span>!</div>
+  <p><%= link_to "Back to auction list", auctions_path %></p>
+  <p><%= link_to "Place a bid", new_auction_bid_path(@auction) %></p>
+
+
+      <div>Auction ends in <span id="time"></span>!</div>
 
 
 
-<script>
-function startTimer(duration, display) {
-    var start = Date.now(),
-        diff,
-        minutes,
-        seconds;
-    function timer() {
-        // get the number of seconds that have elapsed since
-        // startTimer() was called
-        diff = duration - (((Date.now() - start) / 1000) | 0);
+  <script>
+  function startTimer(duration, display) {
+      var start = Date.now(),
+          diff,
+          minutes,
+          seconds;
+      function timer() {
+          // get the number of seconds that have elapsed since
+          // startTimer() was called
+          diff = duration - (((Date.now() - start) / 1000) | 0);
 
-        // does the same job as parseInt truncates the float
-        minutes = (diff / 60) | 0;
-        seconds = (diff % 60) | 0;
-        hours = minutes / 60 | 0;
-        days = hours / 24 | 0;
-
-
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-
-        display.textContent = days + " days " + (hours % 24) + " hours " + (minutes % 60) + " minutes and " + seconds + " seconds";
-
-        if (diff <= 0) {
-            // add one second so that the count down starts at the full duration
-            // example 05:00 not 04:59
-            window.location.reload(false);
-        }
-    };
-    // we don't want to wait a full second before the timer starts
-    timer();
-    setInterval(timer, 1000);
-}
-
-window.onload = function () {
-    var timeLeft = <%=@auction.ending_time - DateTime.now%>
-        display = document.querySelector('#time');
-    startTimer(timeLeft, display);
-};
+          // does the same job as parseInt truncates the float
+          minutes = (diff / 60) | 0;
+          seconds = (diff % 60) | 0;
+          hours = minutes / 60 | 0;
+          days = hours / 24 | 0;
 
 
-</script>
+          minutes = minutes < 10 ? "0" + minutes : minutes;
+          seconds = seconds < 10 ? "0" + seconds : seconds;
+
+          display.textContent = days + " days " + (hours % 24) + " hours " + (minutes % 60) + " minutes and " + seconds + " seconds";
+
+          if (diff <= 0) {
+              // add one second so that the count down starts at the full duration
+              // example 05:00 not 04:59
+              window.location.reload(false);
+          }
+      };
+      // we don't want to wait a full second before the timer starts
+      timer();
+      setInterval(timer, 1000);
+  }
+
+  window.onload = function () {
+      var timeLeft = <%=@auction.ending_time - DateTime.now%>
+          display = document.querySelector('#time');
+      startTimer(timeLeft, display);
+  };
+
+
+  </script>
 
 
 
