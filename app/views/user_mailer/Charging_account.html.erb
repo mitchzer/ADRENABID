@@ -1,6 +1,10 @@
 <p> Hello <%= @user.username %> </p>
 
-<p>Your Adrenabid account has been charged.</p>
+<p>Your Adrenabid account has been charged with €<%= @order.amount %>.</p>
+<p> Your current balance is: <%= humanized_money_with_symbol(@user.wallet.balance) %></p>
+
 
 <p>See ya!</p>
+
+<p>The adrenabid team.</p>
 
