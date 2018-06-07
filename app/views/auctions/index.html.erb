@@ -6,5 +6,13 @@
   <% auctions = Auction.all %>
     <% auctions.each do |auction| %>
     <li><%= link_to auction.product.name, auction_path(auction) %></li>
+<% if policy(Auction).user_admin? %>
+
+
+   <%= link_to "Edit this auction", edit_auction_path(auction) %> <br>
+  <%= button_to "Delete this auction", auction, method: :delete, :data => {:confirm => "Are you sure?"} %>
+
+<% end %>
+
   <% end %>
 </ul>
