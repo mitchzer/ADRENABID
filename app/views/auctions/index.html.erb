@@ -8,6 +8,7 @@
     <% auction.auction_status %>
     <li><%= link_to auction.product.name, auction_path(auction) %></li>
 
+
       <% if auction.status == 1 %>
 
           <div>Auction ends in <span id="auction-timer-<%= auction.id %>"></span>!</div>
@@ -16,6 +17,16 @@
 
         <div>Auction not running</div>
         <% end %>
+
+<% if policy(Auction).user_admin? %>
+
+
+   <%= link_to "Edit this auction", edit_auction_path(auction) %> <br>
+  <%= button_to "Delete this auction", auction, method: :delete, :data => {:confirm => "Are you sure?"} %>
+
+<% end %>
+
+
   <% end %>
 </ul>
 

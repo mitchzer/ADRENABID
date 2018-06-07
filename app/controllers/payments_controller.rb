@@ -1,6 +1,6 @@
 class PaymentsController < ApplicationController
   before_action :set_order
-
+  skip_after_action :verify_policy_scoped, :verify_authorized
   def new
   end
 
