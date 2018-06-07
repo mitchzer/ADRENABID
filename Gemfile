@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.4.4'
 
+gem 'cloudinary'
 gem 'pundit'
 gem 'stripe'
 gem 'mailgun-ruby'
