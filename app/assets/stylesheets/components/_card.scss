@@ -1,7 +1,7 @@
 .card {
   height: 225px;
   width: 350px;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.9);
   background-size: cover !important;
   background-position: center;
   color: white;
@@ -15,11 +15,19 @@
   border-radius: 50%;
 }
 
+// .card:hover .card-description{
+//   font-size:18px;
+// }
+
+.card:hover .card-category{
+  font-size:18px;
+}
+
 
 
 .card-style{
 color:white;
-text-align: center
+text-align: center;
 }
 
 .card-category {
@@ -28,12 +36,14 @@ text-align: center
   left: 10px;
   font-size: 15px;
   text-transform: uppercase;
-  color: red;
+  color: white;
 }
 .card-description {
   position: absolute;
   bottom: 10px;
   left: 10px;
+  text-align: left;
+  font-size: 16px;
 }
 .card-description h2 {
   font-size: 20px;
