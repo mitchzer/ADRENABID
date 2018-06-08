@@ -1,5 +1,7 @@
 class AuctionsController < ApplicationController
   skip_before_action :authenticate_user!
+
+
   def index
     @auctions = policy_scope(Auction)
   end
@@ -7,6 +9,10 @@ class AuctionsController < ApplicationController
   def show
     @auction = Auction.find(params[:id])
     authorize @auction
+    if @auction.status == 2
+      @user = @auction.winning_user
+      UserMailer.auction_won(@user).deliver_now
+    end
   end
 
   def new
