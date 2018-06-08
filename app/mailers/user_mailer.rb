@@ -18,4 +18,11 @@ class UserMailer < ApplicationMailer
     mail(to: @user.email, subject: 'Adrenabid Account Deposit Request.')
   end
 
+  def auction_won(user)
+   @user = user  # Instance variable => available in view
+
+    mail(to: @user.email, subject: 'You just won an auction!')
+    # This will render a view in `app/views/user_mailer`!
+  end
+
 end

@@ -5,7 +5,9 @@ class PagesController < ApplicationController
     render :layout => "home.html.erb"
   end
 
+
   def info
     render "info.html.erb"
   end
+
 end
