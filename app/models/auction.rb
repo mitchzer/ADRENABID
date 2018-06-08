@@ -1,5 +1,5 @@
 class Auction < ApplicationRecord
-  has_many :bids
+  has_many :bids, :dependent => :destroy
   belongs_to :product
   monetize :fee_per_bid_cents
   monetize :price_step_cents
