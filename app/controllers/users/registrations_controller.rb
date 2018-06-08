@@ -5,4 +5,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
       resource.create_wallet
     end
   end
+
+  protected
+
+  def after_sign_up_path_for(resource)
+    '/auctions'
+  end
+
 end
