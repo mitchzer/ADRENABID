@@ -11,20 +11,20 @@
         <div>
           <% auction.auction_status %>
           <% auction.photo.url.nil? ?  url = "http://res.cloudinary.com/dylz8qoqc/image/upload/v1527784270/sample.jpg" : url = auction.photo.url %>
-          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path url, crop: :fill %>')">
+          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.3)), url('<%= cl_image_path url, crop: :fill %>')">
             <div class="card-category"><%= auction.product.name %></div>
-            <div class="card-description">
-              <h2>Get yours!</h2>
+            <div class="card-description" style="text-align: left">
+              <% if auction.status == 1 %>
+            <div><span id="auction-timer-<%= auction.id %>"></span> remaining!</div>
+          <% else %>
+            <div>Auction not running</div>
+          <% end %>
             </div>
             <img class="card-user" src="">
             <a class="card-link" <%= link_to auction.product.name, auction_path(auction) %></a>
           </div>
 
-          <% if auction.status == 1 %>
-            <div>Auction ends in <span id="auction-timer-<%= auction.id %>"></span>!</div>
-          <% else %>
-            <div>Auction not running</div>
-          <% end %>
+
           <% if policy(Auction).user_admin? %>
             <%= link_to "Edit this auction", edit_auction_path(auction) %> <br>
             <%= button_to "Delete this auction", auction, method: :delete, :data => {:confirm => "Are you sure?"} %>
