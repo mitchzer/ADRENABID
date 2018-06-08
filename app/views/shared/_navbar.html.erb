@@ -10,6 +10,7 @@
     <% if user_signed_in? %>
 
       <!-- Links when logged in -->
+      <%= link_to  "How it works", info_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to  "My Profile", user_path(current_user), class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "Current auctions", auctions_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "My balance: #{humanized_money_with_symbol(current_user.wallet.balance)}", new_order_path, class: "navbar-wagon-item navbar-wagon-link" %>
