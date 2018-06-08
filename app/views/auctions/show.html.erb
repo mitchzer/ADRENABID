@@ -1,7 +1,11 @@
 <% @auction.auction_status %>
-<% if @auction.status == 2 %>
-  <p>Auction complete</p>
 
+<div class="container" style="text-align: center">
+<% if @auction.status == 2 %>
+  <h1 style="text-align: center; text-decoration: underline; text-decoration-color: red;">Auction complete!</h1>
+
+<br>
+<br>
   <p>
     <%  if @auction.bids.count == 0 %>
       No bids were placed on <%= @auction.product.name %>!
@@ -12,14 +16,25 @@
 
 <% elsif @auction.status == 1 %>
 
-<h1>Auctions#show</h1>
-<p>Find me in app/views/auctions/show.html.erb</p>
+<h1 style="text-align: center; text-decoration: underline; text-decoration-color: red;">Active Auction</h1>
+
+
+
+
+
 <p>Product name: <%= @auction.product.name %></p>
 <p>RRP: <%= humanized_money_with_symbol(@auction.product.recommended_retail_price) %></p>
 <p>Fee per bid: <%= humanized_money_with_symbol(@auction.fee_per_bid) %></p>
 <p>Price step: <%= humanized_money_with_symbol(@auction.price_step) %></p>
-<p>Status: <%= @auction.status %></p>
+<div>Auction ends in <span id="time"></span>!</div>
+
+<br>
+  <p><%= link_to "Place a bid", new_auction_bid_path(@auction), class: "btn btn-medium btn-home", style: "color: red; font-weight: bold;"%></p>
+
+<br>
 <h3>Your current bids on this auction: </h3>
+
+<div class="table" style="text-align: center">
 
       <ul>
       <% array = [] %>
@@ -34,25 +49,25 @@
         <% end %>
       </ul>
 
+    </div>
+
 <p>
   <%  if @auction.bids.count == 0 %>
   No bids were placed on <%= @auction.product.name %>!
   <% else %>
-  <%= @auction.winning_user.username %> has won the auction.  He can buy the <%= @auction.product.name %> for <%= @auction.winning_bid.price %></p>
+
 
   <% end %>
   </ul>
 
 
-  <p><%= link_to "Back to auction list", auctions_path %></p>
-  <p><%= link_to "Place a bid", new_auction_bid_path(@auction) %></p>
+  <p><%= link_to "Back to auction list", auctions_path, style: "
+  color: #999999; text-decoration: none;" %></p>
 
 
 
-    <div>Auction ends in <span id="time"></span>!</div>
 <br>
 <br>
-<p><%= link_to "Check my profile", user_path(current_user) if current_user != nil %></p>
 
   <script>
   function startTimer(duration, display) {
@@ -104,3 +119,5 @@
 <p>Auction begins at <%= @auction.starting_time %> </p>
 
 <% end %>
+
+</div>
