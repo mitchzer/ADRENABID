@@ -14,12 +14,21 @@
   width: 40px;
   border-radius: 50%;
 }
+
+
+
+.card-style{
+color:white;
+text-align: center
+}
+
 .card-category {
   position: absolute;
   top: 10px;
   left: 10px;
   font-size: 15px;
   text-transform: uppercase;
+  color: red;
 }
 .card-description {
   position: absolute;
@@ -27,7 +36,7 @@
   left: 10px;
 }
 .card-description h2 {
-  font-size: 24px;
+  font-size: 20px;
 }
 .card-description p {
   font-size: 14px;
