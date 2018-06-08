@@ -4,16 +4,36 @@
 
     <div class="bidding-form">
 
-      <h1>Place your bid there</h1>
+      <h1>Place your bid</h1>
 
       <div class="row status">
-        <div class="col-xs-6">
-          <p>Current balance: <%= humanized_money_with_symbol(current_user.wallet.balance) %> </p>
+
+        <div class="row">
+          <div class="col-xs-6 left">
+            <p>Current money in your wallet:</p>
+          </div>
+          <div class="col-xs-6 right">
+            <p><%= humanized_money_with_symbol(current_user.wallet.balance) %></p>
+          </div>
         </div>
-        <div class="col-xs-6">
-          <p>Price of one bid: <%= humanized_money_with_symbol(@auction.fee_per_bid) %></p>
+
+        <div class="row">
+          <div class="col-xs-6 left">
+            <p>You can bid every:</p>
+          </div>
+          <div class="col-xs-6 right">
+            <p><%= humanized_money_with_symbol(@auction.price_step) %></p>
+          </div>
         </div>
-      </div>
+
+        <div class="row">
+          <div class="col-xs-6 left">
+            <p>Price of one bid:</p>
+          </div>
+          <div class="col-xs-6 right">
+            <p><%= humanized_money_with_symbol(@auction.fee_per_bid) %></p>
+          </div>
+        </div>
 
       <br>
 
