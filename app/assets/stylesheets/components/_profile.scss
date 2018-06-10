@@ -1,14 +1,15 @@
 .profile {
-  background-color: white;
+  background-color: black;
   font-size: 15px;
   height: 100vh;
   padding: 80px 60px 80px 60px;
-  color: black;
+  color: white;
     h1 {
       text-align: center;
-      font-weight: lighter;
+      font-weight: normal;
       font-size: 40px;
       margin-bottom: 50px;
+      color: #FFFFF0;
     }
     .row {
       margin-bottom: 0.5em;
@@ -22,25 +23,40 @@
       margin-bottom: 1em;
     }
     .recharge {
-      color: #9ACD32;
+      color: #AFEEEE;
+      font-size: 17px;
+      opacity: 0.7;
+      font-weight: normal;
     }
     .recharge:hover {
-      color: #000000;
+      color: #AFEEEE;
+      opacity: 1;
     }
     .edit {
-      color: #D2691E;
+      color: #FFDAB9;
+      font-size: 15px;
+      opacity: 0.7;
     }
     .edit:hover {
-      color: #000000;
+      color: #FFDAB9;
+      opacity: 1;
     }
     .delete {
-      color: #696969;
+      color: #778899;
+      font-size: 15px;
+      opacity: 0.7;
     }
     .delete:hover {
-      color: #000000;
+      color: #778899;
+      opacity: 1;
     }
 }
 
 .gauche {
   text-align: right;
+  font-weight: lighter;
+}
+
+.profile-balance-num {
+  color: #CD5C5C;
 }

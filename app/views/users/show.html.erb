@@ -6,7 +6,7 @@
 
       <div class="profile">
 
-        <h1>Your profile page</h1>
+        <h1><%= @user.username %>'s profile page</h1>
 
         <div class="row">
           <div class="col-xs-6">Username:</div>
@@ -25,15 +25,27 @@
 
         <div class="row">
           <div class="col-xs-6">Current balance:</div>
-          <div class="col-xs-6 gauche"><%= humanized_money_with_symbol(@user.wallet.balance) %></div>
+          <div class="col-xs-6 gauche profile-balance-num"><%= humanized_money_with_symbol(@user.wallet.balance) %></div>
         </div>
 
         <br>
+        <br>
 
-
-          <%= link_to "Charge your wallet", new_order_path, class: "btn recharge" %>
-          <%= link_to "Edit my profile", edit_user_registration_path, class: "btn edit"  %>
-          <%= link_to "Delete my account", user_registration_path, class: "btn delete", method: :delete, :data => {:confirm => "You Sure?"} %>
+          <div class="row">
+            <div class="col-xs-8 col-xs-offset-2">
+              <%= link_to "Charge your wallet", new_order_path, class: "btn recharge" %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-8 col-xs-offset-2">
+              <%= link_to "Edit your profile", edit_user_registration_path, class: "btn edit"  %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-8 col-xs-offset-2">
+              <%= link_to "Delete your account", user_registration_path, class: "btn delete", method: :delete, :data => {:confirm => "You Sure?"} %>
+            </div>
+          </div>
 
       </div>
     </div>
