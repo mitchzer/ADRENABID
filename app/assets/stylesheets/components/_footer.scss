@@ -1,6 +1,6 @@
 .footer {
-  background-color: rgb(20,20,20);
-  position: relative;
+  background-color: none;
+  position: fixed;
   bottom: 0;
   width: 100%;
   display: flex;
@@ -8,15 +8,15 @@
   justify-content: space-between;
   height: 70px;
   padding: 0px 50px;
-  color: white;
+  color: rgb(20,20,20);
 }
 .footer-links {
   display: flex;
   align-items: center;
 }
 .footer-links a {
-  color: white;
-  opacity: 0.15;
+  color: rgb(20,20,20);
+  opacity: 1;
   text-decoration: none;
   font-size: 24px;
   padding: 0px 10px;
