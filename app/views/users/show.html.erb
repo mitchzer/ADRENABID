@@ -1,3 +1,12 @@
+
+        <% @user.bids.each do |bid| %>
+        <% if bid.won == true %>
+       <h1>You won the Bid that ended at<%=bid.auction.product.name %>
+
+       </h1>
+        <% end %>
+        <% end %>
+
 <div class="wrapper">
   <div class="container">
 
@@ -55,7 +64,11 @@
 
     <% unless %>
 
-        <% @user = @auction.winning_bid.user_id %>
+        <% @user.bids.each do |bid| %>
+        <% if bid.won == true %>
+        <%= bid %>
+        <% end %>
+        <% end %>
 
 
       <div class="row">

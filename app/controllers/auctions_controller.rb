@@ -8,12 +8,13 @@ class AuctionsController < ApplicationController
 
   def show
     @auction = Auction.find(params[:id])
-    @bid = Bid.new
+    #@bid = Bid.new
     authorize @auction
-    if @auction.status == 2 && @user = @auction.winning_user
+    # if @auction.status == 2 &&
+     @user = @auction.winning_user
       # @user = @auction.winning_user
       UserMailer.auction_won(@user).deliver_now
-    end
+    # end
   end
 
   def new
