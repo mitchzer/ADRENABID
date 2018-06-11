@@ -1,83 +1,131 @@
-<br>
-<br>
-<br>
 <div class="container">
-<% @auction.auction_status %>
 
-<div class="container" style="text-align: center">
-<% if @auction.status == 2 %>
-  <h1 style="text-align: center; text-decoration: underline; text-decoration-color: red;">Auction complete!</h1>
+  <div class="row">
 
-<br>
-<br>
-  <p>
-    <%  if @auction.bids.count == 0 %>
-      No bids were placed on <%= @auction.product.name %>!
-    <% else %>
-      <%= @auction.winning_user.username %> has won the auction.  He can buy the <%= @auction.product.name %> for <%= @auction.winning_bid.price %>
-    <% end %>
-  </p>
+<div class="row-eq-height">
 
-<% elsif @auction.status == 1 %>
-
-
-<h1 style="text-align: center; text-decoration: underline; text-decoration-color: red;">Active Auction</h1>
-
-
-
-<p>Product name: <%= @auction.product.name %></p>
-<p>RRP: <%= humanized_money_with_symbol(@auction.product.recommended_retail_price) %></p>
-<p>Fee per bid: <%= humanized_money_with_symbol(@auction.fee_per_bid) %></p>
-<p>Price step: <%= humanized_money_with_symbol(@auction.price_step) %></p>
-<div>Auction ends in <span id="time"></span>!</div>
-
-<br>
-  <p><%= link_to "Place a bid", new_auction_bid_path(@auction), class: "btn btn-medium btn-home", style: "color: red; font-weight: bold;"%></p>
-
-<br>
-<h3>Your current bids on this auction: </h3>
-
-<div class="table" style="text-align: center">
-
-      <ul>
-      <% array = [] %>
-        <% @auction.bids.sort_by { |b| b.price_cents }.each do |bid|  %>
-            <% if bid.user == current_user %>
-              <% array << humanized_money_with_symbol(bid.price) %>
-            <% end %>
-          <% array.each do |price| %>
-            <li><%= price %></li>
-          <% end %>
-        <% array = [] %>
+    <div class="col-xs-12 col-sm-6">
+      <div class="auction-details">
+        <% if @auction.status == 2 %>
+        <h1>Auction completed</h1>
+        <% if @auction.bids.count == 0 %>
+        <p>No bids were placed on <%= @auction.product.name %>!</p>
+        <% else %>
+        <p><%= @auction.winning_user.username %> has won the auction</p>
+        <p>He can buy the <%= @auction.product.name %> for <%= @auction.winning_bid.price %></p>
         <% end %>
-      </ul>
 
+        <% elsif @auction.status == 1 %>
+        <h1><%= @auction.product.name %></h1>
+        <p>Ongoing auction</p>
+        <p>Recommended retail price of <%= humanized_money_with_symbol(@auction.product.recommended_retail_price) %></p>
+        <p>Fee per bid: <%= humanized_money_with_symbol(@auction.fee_per_bid) %></p>
+        <p>Price step: <%= humanized_money_with_symbol(@auction.price_step) %></p>
+        <div>Auction ends in <span id="time"></span>!</div>
+
+        <%= link_to "Back to auction list", auctions_path %>
+
+        <% elsif @auction.status == 0 %>
+        <p>Auction begins at <%= @auction.starting_time %></p>
+        <% end %>
+      </div>
     </div>
 
-<p>
-  <%  if @auction.bids.count == 0 %>
-  No bids were placed on <%= @auction.product.name %>!
-  <% else %>
+    <div class="col-xs-12 col-sm-6">
+      <div class="bidding-form">
+        <h1>Place your bid</h1>
+        <div class="row status">
+          <div class="row">
+            <div class="col-xs-6 left">
+              <p>My balance:</p>
+            </div>
+            <div class="col-xs-6 right">
+              <p><%= humanized_money_with_symbol(current_user.wallet.balance) %></p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-6 left">
+              <p>You can bid every:</p>
+            </div>
+            <div class="col-xs-6 right">
+              <p><%= humanized_money_with_symbol(@auction.price_step) %></p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-6 left">
+              <p>Price of one bid:</p>
+            </div>
+            <div class="col-xs-6 right">
+              <p><%= humanized_money_with_symbol(@auction.fee_per_bid) %></p>
+            </div>
+          </div>
+
+          <br>
+
+          <div>
+            <%= simple_form_for [ @auction, @bid ] do |f| %>
+            <%= f.input :price_cents, placeholder: "Type your bidding price here in cents", label: false %>
+            <%= f.submit "Bid !", class: "btn btn-primary" %>
+            <% end %>
+            <br>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    </div>
+      </div>
 
 
-  <% end %>
-  </ul>
+    <div class="row">
+
+      <% array = [] %>
+      <% @auction.bids.sort_by { |b| b.price_cents }.each do |bid|  %>
+      <% if bid.user == current_user %>
+      <% array << humanized_money_with_symbol(bid.price) %>
+      <% end %>
+      <% end %>
 
 
-  <p><%= link_to "Back to auction list", auctions_path, style: "
-  color: #999999; text-decoration: none;" %></p>
+      <% unless array.size == 0 %>
+      <div class="currentbids">
+        <div class="col-xs-12">
+          <br>
+          <br>
 
+          <p>You have currently <%= array.size %> bids on this auction:</p>
+        </div>
+        <br>
+        <br>
+      </div>
+      <div class="currentbids-prices">
+        <% array.each do |price| %>
+        <div class = "col-xs-6 col-md-2">
+          <li><%= price %></li>
+          <br>
+        </div>
+        <% end %>
+      </div>
+      <% else %>
+      <div class="currentbids">
+        <div class="col-xs-12">
+          <p>You have not bidded here yet</p>
+        </div>
+      </div>
+      <br>
 
+      <% end %>
+    </div>
 
-<br>
-<br>
 
   <script>
-  function startTimer(duration, display) {
+    function startTimer(duration, display) {
       var start = Date.now(),
-          diff,
-          minutes,
-          seconds;
+      diff,
+      minutes,
+      seconds;
       function timer() {
           // get the number of seconds that have elapsed since
           // startTimer() was called
@@ -99,28 +147,22 @@
               // add one second so that the count down starts at the full duration
               // example 05:00 not 04:59
               window.location.reload(false);
-          }
-      };
+            }
+          };
       // we don't want to wait a full second before the timer starts
       timer();
       setInterval(timer, 1000);
-  }
+    }
 
-  window.onload = function () {
+    window.onload = function () {
       var timeLeft = <%=@auction.ending_time - DateTime.now%>
-          display = document.querySelector('#time');
+      display = document.querySelector('#time');
       startTimer(timeLeft, display);
-  };
-
-
+    };
   </script>
+</div>
 
-
-
-
-<% elsif @auction.status == 0 %>
-<p>Auction begins at <%= @auction.starting_time %> </p>
-
-<% end %>
 
 </div>
+
+
