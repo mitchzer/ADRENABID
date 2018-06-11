@@ -1,79 +1,67 @@
 <div class="container">
 
+  <% if @auction.status == 1 %>
+
   <div class="row">
 
-      <div class="col-xs-12 col-sm-6">
-        <div class="auction-details">
-          <% if @auction.status == 2 %>
-          <h1>Auction completed</h1>
-          <% if @auction.bids.count == 0 %>
-          <p>No bids were placed on <%= @auction.product.name %>!</p>
-          <% else %>
-          <p><%= @auction.winning_user.username %> has won the auction</p>
-          <p>He can buy the <%= @auction.product.name %> for <%= @auction.winning_bid.price %></p>
-          <% end %>
-
-          <% elsif @auction.status == 1 %>
-          <h1><%= @auction.product.name %></h1>
-          <p><i>Ongoing auction</i></p>
-          <br>
-          <p>Current number of bids: <%= @auction.bids.all.size %> </p>
-          <p>Current winning bid price:</p>
-          <p>Auction ends in:</p>
-          <br>
-          <div class="stressful-timing"><span id="time"></span>!</div>
-          <br>
-          <% elsif @auction.status == 0 %>
-          <p>Auction begins at <%= @auction.starting_time %></p>
-          <% end %>
-        </div>
+    <div class="col-xs-12 col-sm-6">
+      <div class="auction-details">
+        <h1><%= @auction.product.name %></h1>
+        <p><i>Ongoing auction</i></p>
+        <br>
+        <p>Current number of bids: <%= @auction.bids.all.size %> </p>
+        <p>Current winning bid price:</p>
+        <p>Auction ends in:</p>
+        <br>
+        <div class="stressful-timing"><span id="time"></span>!</div>
+        <br>
       </div>
+    </div>
 
-      <div class="col-xs-12 col-sm-6">
-        <div class="auction-details">
-          <h1>Place your bid</h1>
-          <div class="row status">
-            <div class="row">
-              <div class="col-xs-6 left">
-                <p>My balance:</p>
-              </div>
-              <div class="col-xs-6 right">
-                <p><%= humanized_money_with_symbol(current_user.wallet.balance) %></p>
-              </div>
+    <div class="col-xs-12 col-sm-6">
+      <div class="auction-details">
+        <h1>Place your bid</h1>
+        <div class="row status">
+          <div class="row">
+            <div class="col-xs-6 left">
+              <p>My balance:</p>
             </div>
-
-            <div class="row">
-              <div class="col-xs-6 left">
-                <p>You can bid every:</p>
-              </div>
-              <div class="col-xs-6 right">
-                <p><%= humanized_money_with_symbol(@auction.price_step) %></p>
-              </div>
+            <div class="col-xs-6 right">
+              <p><%= humanized_money_with_symbol(current_user.wallet.balance) %></p>
             </div>
+          </div>
 
-            <div class="row">
-              <div class="col-xs-6 left">
-                <p>Price of one bid:</p>
-              </div>
-              <div class="col-xs-6 right">
-                <p><%= humanized_money_with_symbol(@auction.fee_per_bid) %></p>
-              </div>
+          <div class="row">
+            <div class="col-xs-6 left">
+              <p>You can bid every:</p>
             </div>
+            <div class="col-xs-6 right">
+              <p><%= humanized_money_with_symbol(@auction.price_step) %></p>
+            </div>
+          </div>
 
+          <div class="row">
+            <div class="col-xs-6 left">
+              <p>Price of one bid:</p>
+            </div>
+            <div class="col-xs-6 right">
+              <p><%= humanized_money_with_symbol(@auction.fee_per_bid) %></p>
+            </div>
+          </div>
+
+          <br>
+
+          <div>
+            <%= simple_form_for [ @auction, @bid ] do |f| %>
+            <%= f.input :price_cents, placeholder: "Type your bidding price here in cents", label: false %>
+            <%= f.submit "Bid !", class: "btn btn-primary" %>
+            <% end %>
             <br>
-
-            <div>
-              <%= simple_form_for [ @auction, @bid ] do |f| %>
-              <%= f.input :price_cents, placeholder: "Type your bidding price here in cents", label: false %>
-              <%= f.submit "Bid !", class: "btn btn-primary" %>
-              <% end %>
-              <br>
-            </div>
           </div>
         </div>
       </div>
+    </div>
   </div>
-
 
   <div class="row">
     <% array = [] %>
@@ -109,8 +97,77 @@
     <% end %>
   </div>
 
-<br>
-<br>
+  <br>
+  <br>
+
+  <% elsif @auction.status == 2 %>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <div class="auction-details center">
+        <h1><%= @auction.product.name %></h1>
+        <p><i>Auction completed on <%= @auction.ending_time.strftime('%x') %></i></p>
+        <br>
+        <p>Final number of bids: <%= @auction.bids.all.size %> </p>
+        <p>Final winning bid price:</p>
+        <p>Final winner:</p>
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="row">
+    <% array = [] %>
+    <% @auction.bids.sort_by { |b| b.price_cents }.each do |bid|  %>
+    <% if bid.user == current_user %>
+    <% array << humanized_money_with_symbol(bid.price) %>
+    <% end %>
+    <% end %>
+
+    <% unless array.size == 0 %>
+    <div class="currentbids">
+      <div class="col-xs-12">
+        <br>
+        <h1>You did <%= array.size %> bids on this auction:</h1>
+      </div>
+    </div>
+    <div class="currentbids-prices">
+      <% array.each do |price| %>
+      <div class = "col-xs-6 col-md-2">
+        <li><%= price %></li>
+        <br>
+      </div>
+      <% end %>
+    </div>
+    <% else %>
+    <div class="currentbids">
+      <div class="col-xs-12">
+        <p>You did not bid on this auction</p>
+      </div>
+    </div>
+    <br>
+
+    <% end %>
+  </div>
+  <br>
+  <br>
+
+  <% elsif @auction.status == 2 %>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <div class="auction-details center">
+        <h1>Auction begins at <%= @auction.starting_time %></h1>
+      </div>
+    </div>
+  </div>
+
+  <br>
+  <br>
+
+  <% end %>
+
 
   <%= link_to "Back to auction list", auctions_path, class: "btn-back" %>
 
