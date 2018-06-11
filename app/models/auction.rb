@@ -33,9 +33,11 @@ class Auction < ApplicationRecord
     self.bids.where(:price_cents => winning_price).order(:created_at).limit(1).first
   end
 
-
 # winning_user returns user object
   def winning_user
+      @bid = winning_bid
+      @bid.won = true
+      @bid.save
       id = winning_bid.user_id
       User.where(:id => id).first
   end

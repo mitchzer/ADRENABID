@@ -1,5 +1,5 @@
 class AuctionsController < ApplicationController
-  skip_before_action :authenticate_user!
+   skip_before_action :authenticate_user!
 
 
   def index
@@ -8,17 +8,20 @@ class AuctionsController < ApplicationController
 
   def show
     @auction = Auction.find(params[:id])
-    @bid = Bid.new
+    #@bid = Bid.new
     authorize @auction
-    if @auction.status == 2
-      @user = @auction.winning_user
+    # if @auction.status == 2 &&
+     @user = @auction.winning_user
+      # @user = @auction.winning_user
       UserMailer.auction_won(@user).deliver_now
-    end
+    # end
   end
 
   def new
     @auction = Auction.new
-    authorize @auction
+    unless authorize @auction
+      redirect_to products_path
+    end
   end
 
   def create

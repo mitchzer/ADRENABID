@@ -1,0 +1,15 @@
+<div class="container">
+
+
+<p>Here we can create new products for our customers</p>
+
+<%= simple_form_for @product do |f| %>
+  <%= f.input :name %>
+  <%= f.input :recommended_retail_price_cents %>
+  <%= f.input :photo %>
+  <%= f.input :photo_cache, as: :hidden %>
+  <%#= f.association :auction %>
+  <%= f.button :submit %>
+<% end %>
+
+</div>

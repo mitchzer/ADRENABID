@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+  #skip_before_action :authenticate_user!
+  #skip_after_action :verify_authorized
 
   def index
     @products = policy_scope(Product)
@@ -6,6 +8,7 @@ class ProductsController < ApplicationController
   end
 
   def show
+
   end
 
   def new
