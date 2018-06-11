@@ -1,5 +1,16 @@
-<%= simple_form_for @order do |f| %>
-  <%= f.input :amount, placeholder: 'Select amount in €' %>
-  <%= f.submit "Charge your wallet" %>
-<% end %>
-
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <div class="new_order_center">
+        <h1>Recharge your wallet here</h1>
+        <br>
+        <br>
+        <br>
+        <%= simple_form_for @order do |f| %>
+          <%= f.input :amount, placeholder: 'Select amount in €', label: false %>
+          <%= f.submit "Recharge" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
