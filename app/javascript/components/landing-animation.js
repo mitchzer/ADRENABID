@@ -15,7 +15,6 @@ anime.timeline({loop: false})
   }).add({
     targets: '.ml4 .letters-1',
     opacity: 0,
-    scale: ml4.scaleOut,
     duration: ml4.durationOut,
     easing: "easeInExpo",
     delay: ml4.delay
@@ -27,7 +26,6 @@ anime.timeline({loop: false})
   }).add({
     targets: '.ml4 .letters-2',
     opacity: 0,
-    scale: ml4.scaleOut,
     duration: ml4.durationOut,
     easing: "easeInExpo",
     delay: ml4.delay
@@ -39,7 +37,6 @@ anime.timeline({loop: false})
   }).add({
     targets: '.ml4 .letters-3',
     opacity: 0,
-    scale: ml4.scaleOut,
     duration: ml4.durationOut,
     easing: "easeInExpo",
     delay: ml4.delay

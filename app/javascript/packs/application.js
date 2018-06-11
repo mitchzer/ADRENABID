@@ -12,6 +12,16 @@ window.app = {
 
 
 $(function() {
+  let logoWidth = '80%';
+
+  if (window.innerWidth < 540) {
+    console.log("Hello World");
+    logoWidth = '80%';
+  }
+  else {
+    logoWidth = 540;
+  }
+
 
   var runTime = 3;
   var runOffset = 0.22;
@@ -46,7 +56,7 @@ $(function() {
       })
       .to("#svgRect", runTime, {
         attr: {
-          width: 540
+          width: logoWidth
         },
         ease: Power0.easeNone
       })
@@ -69,7 +79,7 @@ $(function() {
       })
       .to("#svgRect", runTime, {
         attr: {
-          width: 540
+          width: logoWidth
         },
         ease: Power0.easeNone
       });
@@ -79,7 +89,7 @@ $(function() {
       })
       .to("#svgRect2", runTime, {
         attr: {
-          width: 540
+          width: logoWidth
         },
         ease: Power0.easeNone
       })
@@ -106,7 +116,7 @@ $(function() {
       })
       .to("#svgRect3", runTime, {
         attr: {
-          width: 540
+          width: logoWidth
         },
         ease: Power0.easeNone
       })
@@ -129,7 +139,7 @@ $(function() {
     });
 
     rectAnimate.to("#rect1", runTime, {
-        width: 540,
+        width: logoWidth,
         ease: Power0.easeNone
       })
       .set("#rect1", {
@@ -145,7 +155,7 @@ $(function() {
     });
 
     rectPause.set("#rect2", {
-        width: 540,
+        width: logoWidth,
         delay: runTimeOffset
       })
       .to("#rect2", 0, {
@@ -161,4 +171,3 @@ $(function() {
   }, runOffsetMili);
 
 });
-
