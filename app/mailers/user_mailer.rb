@@ -7,7 +7,7 @@ class UserMailer < ApplicationMailer
   #
   def welcome(user)
    @user = user  # Instance variable => available in view
-
+   #@generated_password = generated_password
     mail(to: @user.email, subject: 'Welcome to Adrenabid')
     # This will render a view in `app/views/user_mailer`!
   end
