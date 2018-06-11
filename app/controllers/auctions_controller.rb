@@ -1,5 +1,5 @@
 class AuctionsController < ApplicationController
-  skip_before_action :authenticate_user!
+   skip_before_action :authenticate_user!
 
 
   def index
@@ -18,7 +18,9 @@ class AuctionsController < ApplicationController
 
   def new
     @auction = Auction.new
-    authorize @auction
+    unless authorize @auction
+      redirect_to products_path
+    end
   end
 
   def create
