@@ -10,7 +10,12 @@
         <p><i>Ongoing auction</i></p>
         <br>
         <p>Current number of bids: <%= @auction.bids.all.size %> </p>
-        <p>Current winning bid price:</p>
+        <p>Current winning bid price:
+          <% if @auction.bids.count ==0 %>
+          No bids made yet!
+          <% else %>
+          <%= @auction.winning_price %></p>
+          <% end %>
         <p>Auction ends in:</p>
         <br>
         <div class="stressful-timing"><span id="time"></span>!</div>
@@ -109,8 +114,12 @@
         <p><i>Auction completed on <%= @auction.ending_time.strftime('%x') %></i></p>
         <br>
         <p>Final number of bids: <%= @auction.bids.all.size %> </p>
-        <p>Final winning bid price:</p>
-        <p>Final winner:</p>
+        <p>Final winning bid price: <% if @auction.bids.count ==0 %>
+          No bids were made!
+          <% else %>
+          <%= @auction.winning_price %>
+          <% end %></p>
+        <p>Final winner: <%= @auction.winning_user.username %></p>
       </div>
     </div>
   </div>
@@ -153,7 +162,7 @@
   <br>
   <br>
 
-  <% elsif @auction.status == 2 %>
+  <% elsif @auction.status == 0 %>
 
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
