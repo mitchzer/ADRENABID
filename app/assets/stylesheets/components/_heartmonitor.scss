@@ -16,10 +16,17 @@ h1{
   font-size: 2.4rem;
   color: white;
   text-align: center;
-  text-transform: uppercase;
-  letter-spacing: .3rem;
-  font-size: 80px;
+  // text-transform: uppercase;
+  letter-spacing: .6rem;
+  font-size: 120px;
 }
+
+.home-subheading{
+  font-size: 14px;
+  color: #FFFFF0;
+  letter-spacing: .3rem;
+   margin: 10px 0;
+  }
 
 .show-mobile {
         display: none;
@@ -99,6 +106,8 @@ body{
   background: black;
 }
 
+
+
 @media (max-width: 540px) {
   /* For a screen < 540px, this CSS will be read */
   .show-mobile {
@@ -106,8 +115,29 @@ body{
       }
 
   .home {
-    font-size: 36px;
+    font-size: 52px;
+    font-family: BradleyHandITCTT-Bold, Bradley Hand;
+    font-style: expanded;
+    font-weight: bold;
+    fill:#FFFFFF;
   }
+  .home-subheading{
+  font-size: 14px;
+  color: #FFFFF0;
+  letter-spacing: .3rem;
+   margin-left: 20px;
+   margin-right: 20px;
+  }
+
+  .btn-home{
+     color: #999999;
+  border: 1px solid #999999;
+  padding: 15px 25px;
+  border-radius: 50px;
+  font-weight: lighter;
+  opacity: 1;
+  }
+
   .m14{
     width:20px;
   }
