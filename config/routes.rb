@@ -1,14 +1,4 @@
 Rails.application.routes.draw do
-  # get 'bids/new'
-  # get 'bids/create'
-  # get 'auctions/index'
-  # get 'auctions/show'
-  # get 'auctions/new'
-  # get 'auctions/create'
-  # get 'auctions/edit'
-  # get 'auctions/update'
-  # get 'auctions/delete'
-  # get 'users/create'
   devise_for :users, controllers: {
     registrations: "users/registrations"
   }
