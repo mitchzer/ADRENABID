@@ -18,7 +18,12 @@ h1{
   text-align: center;
   text-transform: uppercase;
   letter-spacing: .3rem;
+  font-size: 80px;
 }
+
+.show-mobile {
+        display: none;
+      }
 
 
 #rect1, #rect2{
@@ -62,7 +67,7 @@ h1{
     position: absolute;
     left: 32px;
     top: 30px;
-    width: 540px !important;
+    width: 540px;
 
     .cls-1 {
       fill: none;
@@ -93,3 +98,69 @@ body{
   margin: 0;
   background: black;
 }
+
+@media (max-width: 540px) {
+  /* For a screen < 540px, this CSS will be read */
+  .show-mobile {
+        display: block;
+      }
+
+  .home {
+    font-size: 36px;
+  }
+  .m14{
+    width:20px;
+  }
+  #rect1, #rect2{
+  color: white;
+  z-index: 10;
+  position: absolute;
+  left: 32px;
+  top: 10px;
+  height: 380px;
+  width: 0px;
+  background: black;
+}
+.suck-my-graph{
+  height: 100%;
+  width: 320px;
+  background: black;
+  border-radius: 3px;
+  position: relative;
+  padding: 0px;
+
+  &:before{
+    content: '';
+    position: absolute;
+    left: 30px;
+    top: 10px;
+    height: 240px;
+    width: 0px;
+    background: #48466d;
+  }
+  &:after{
+    content: '';
+    position: absolute;
+    left: 30px;
+    bottom: 30px;
+    height: 0px;
+    width: 320px;
+    background: #48466d;
+  }
+
+  svg{
+    position: absolute;
+    left: 32px;
+    top: 30px;
+    width: 320px ;
+
+    .cls-1 {
+      fill: none;
+      stroke: red;
+      stroke-miterlimit: 10;
+      stroke-width: 2px;
+    }
+  }
+}
+}
+
