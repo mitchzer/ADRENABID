@@ -1,54 +1,109 @@
 <div class="wrapper">
   <div class="container">
 
+    <% if @user.username != @auction.winning_user.username %>
+      <div class="row">
+      <div class ="col-xs-12 col-sm-6 col-sm-offset-3">
 
+        <div class="profile">
+
+          <h1><%= @user.username %>'s profile page</h1>
+
+          <div class="row">
+            <div class="col-xs-6">Username:</div>
+            <div class="col-xs-6 gauche"><%= @user.username %></div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-6">Email address:</div>
+            <div class="col-xs-6 gauche"><%= @user.email %></div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-6">Shipping address:</div>
+            <div class="col-xs-6 gauche"><%= @user.address %></div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-6">Current balance:</div>
+            <div class="col-xs-6 gauche profile-balance-num"><%= humanized_money_with_symbol(@user.wallet.balance) %></div>
+          </div>
+
+          <br>
+          <br>
+
+            <div class="row">
+              <div class="col-xs-8 col-xs-offset-2">
+                <%= link_to "Charge your wallet", new_order_path, class: "btn recharge" %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-8 col-xs-offset-2">
+                <%= link_to "Edit your profile", edit_user_registration_path, class: "btn edit"  %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-8 col-xs-offset-2">
+                <%= link_to "Delete your account", user_registration_path, class: "btn delete", method: :delete, :data => {:confirm => "You Sure?"} %>
+              </div>
+            </div>
+
+        </div>
+      </div>
+      </div>
+
+    <% else %>
+      <div class="row">
+
+      <div class="col-xs-12 col-sm-6">
     <div class ="col-xs-12 col-sm-6 col-sm-offset-3">
 
-      <div class="profile">
+        <div class="profile">
 
-        <h1><%= @user.username %>'s profile page</h1>
-
-        <div class="row">
-          <div class="col-xs-6">Username:</div>
-          <div class="col-xs-6 gauche"><%= @user.username %></div>
-        </div>
-
-        <div class="row">
-          <div class="col-xs-6">Email address:</div>
-          <div class="col-xs-6 gauche"><%= @user.email %></div>
-        </div>
-
-        <div class="row">
-          <div class="col-xs-6">Shipping address:</div>
-          <div class="col-xs-6 gauche"><%= @user.address %></div>
-        </div>
-
-        <div class="row">
-          <div class="col-xs-6">Current balance:</div>
-          <div class="col-xs-6 gauche profile-balance-num"><%= humanized_money_with_symbol(@user.wallet.balance) %></div>
-        </div>
-
-        <br>
-        <br>
+          <h1><%= @user.username %>'s profile page</h1>
 
           <div class="row">
-            <div class="col-xs-8 col-xs-offset-2">
-              <%= link_to "Charge your wallet", new_order_path, class: "btn recharge" %>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-xs-8 col-xs-offset-2">
-              <%= link_to "Edit your profile", edit_user_registration_path, class: "btn edit"  %>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-xs-8 col-xs-offset-2">
-              <%= link_to "Delete your account", user_registration_path, class: "btn delete", method: :delete, :data => {:confirm => "You Sure?"} %>
-            </div>
+            <div class="col-xs-6">Username:</div>
+            <div class="col-xs-6 gauche"><%= @user.username %></div>
           </div>
 
+          <div class="row">
+            <div class="col-xs-6">Email address:</div>
+            <div class="col-xs-6 gauche"><%= @user.email %></div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-6">Shipping address:</div>
+            <div class="col-xs-6 gauche"><%= @user.address %></div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-6">Current balance:</div>
+            <div class="col-xs-6 gauche profile-balance-num"><%= humanized_money_with_symbol(@user.wallet.balance) %></div>
+          </div>
+
+          <br>
+          <br>
+
+            <div class="row">
+              <div class="col-xs-8 col-xs-offset-2">
+                <%= link_to "Charge your wallet", new_order_path, class: "btn recharge" %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-8 col-xs-offset-2">
+                <%= link_to "Edit your profile", edit_user_registration_path, class: "btn edit"  %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-8 col-xs-offset-2">
+                <%= link_to "Delete your account", user_registration_path, class: "btn delete", method: :delete, :data => {:confirm => "You Sure?"} %>
+              </div>
+            </div>
+
+        </div>
       </div>
-    </div>
+    <% end %>
 
   </div>
 </div>
