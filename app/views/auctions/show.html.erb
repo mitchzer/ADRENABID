@@ -14,7 +14,7 @@
           <% if @auction.bids.count ==0 %>
           No bids made yet!
           <% else %>
-          <%= @auction.winning_price %></p>
+          <%= humanized_money_with_symbol(@auction.winning_price) %></p>
           <% end %>
         <p>Auction ends in:</p>
         <br>
@@ -117,7 +117,7 @@
         <p>Final winning bid price: <% if @auction.bids.count ==0 %>
           No bids were made!
           <% else %>
-          <%= @auction.winning_price %>
+          <%= humanized_money_with_symbol(@auction.winning_price) %>
           <% end %></p>
         <p>Final winner: <%= @auction.winning_user.username %></p>
       </div>
