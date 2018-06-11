@@ -1,13 +1,14 @@
 <div class="wrapper">
   <div class="container">
 
-    <% if @user.username != @auction.winning_user.username %>
+
       <div class="row">
       <div class ="col-xs-12 col-sm-6 col-sm-offset-3">
 
         <div class="profile">
 
           <h1><%= @user.username %>'s profile page</h1>
+
 
           <div class="row">
             <div class="col-xs-6">Username:</div>
@@ -52,7 +53,11 @@
       </div>
       </div>
 
-    <% else %>
+    <% unless %>
+
+        <% @user = @auction.winning_bid.user_id %>
+
+
       <div class="row">
 
       <div class="col-xs-12 col-sm-6">

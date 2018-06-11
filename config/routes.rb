@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     registrations: "users/registrations"
   }
   root to: 'pages#home'
-  get '/', to: 'pages#home'
+  #get '/', to: 'pages#home'
   get '/info', to: 'pages#info'
   # get '/products', to: 'pages#products'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
