@@ -4,8 +4,8 @@
   <div class="container">
 
 
-      <div class="row">
-      <div class ="col-xs-12 col-sm-6 col-sm-offset-3">
+
+      <div class ="col-xs-12 col-sm-6 ">
 
         <div class="profile">
 
@@ -53,20 +53,27 @@
 
         </div>
       </div>
-      </div>
+
 
     <% if %>
 
         <% @user.bids.each do |bid| %>
-        <% if bid.won == true %>
-       <h1>You just won a <%=bid.auction.product.name %> !!!
 
-       </h1>
-        <% end %>
-        <% end %>
+          <div class ="col-xs-12 col-sm-6" height="140px">
+            <% if bid.won == true %>
 
+            <h1>You just won a <%=bid.auction.product.name %> !!!
+              <h1><%= link_to "You can buy it now, you deserve it!", order_path %></h1>
+
+
+            </h1>
+            <% end %>
+          </div>
+          <% end %>
+
+        </div>
   <% end %>
 
-  </div>
+
 </div>
 

@@ -16,7 +16,9 @@
       <%= link_to "My balance: #{humanized_money_with_symbol(current_user.wallet.balance)}", new_order_path, class: "navbar-wagon-item navbar-wagon-link" %>
 
 
-      <!-- Avatar with dropdown menu -->
+
+
+<!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
         <div class="dropdown">
           <%= image_tag "pumper.jpg", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
@@ -29,13 +31,8 @@
               </li>
             <% end %>
             <li>
-              <%= link_to "#" do %>
-                <i class="fa fa-cog"></i>  <%= t(".settings", default: "Settings") %>
-              <% end %>
-            </li>
-            <li>
               <%= link_to destroy_user_session_path, method: :delete do %>
-                <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+              <%= t(".sign_out", default: "Log out") %>
               <% end %>
             </li>
           </ul>
@@ -52,9 +49,25 @@
     <div class="dropdown">
       <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-        <li><a href="#">Some mobile link</a></li>
-        <li><a href="#">Other one</a></li>
-        <li><a href="#">Other one</a></li>
+        <% if current_user %>
+          <li>
+            <%= link_to  "My Profile", user_path(current_user), class: "mobile_navbar-wagon-link" %>
+          </li>
+        <% end %>
+          <li>
+            <%= link_to "Current auctions", auctions_path, class: "mobile_navbar-wagon-link" %>
+          </li>
+          <li>
+            <%= link_to "My balance: #{humanized_money_with_symbol(current_user.wallet.balance)}", new_order_path, class: "mobile_navbar-wagon-link" %>
+          </li>
+          <li>
+            <%= link_to  "How it works", info_path, class: "mobile_navbar-wagon-link" %>
+          </li>
+          <li>
+            <%= link_to destroy_user_session_path, method: :delete do %>
+            <%= t(".sign_out", default: "Log out") %>
+            <% end %>
+          </li>
       </ul>
     </div>
   </div>
