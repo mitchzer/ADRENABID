@@ -1,9 +1,8 @@
-
-
 <div class="wrapper">
+
   <div class="container">
 
-
+    <div class="row profile-wrapper">
 
       <div class ="col-xs-12 col-sm-6 ">
 
@@ -35,52 +34,51 @@
           <br>
           <br>
 
-            <div class="row">
-              <div class="col-xs-8 col-xs-offset-2">
-                <%= link_to "Charge your wallet", new_order_path, class: "btn recharge" %>
-              </div>
+          <div class="row">
+            <div class="col-xs-8 col-xs-offset-2">
+              <%= link_to "Charge your wallet", new_order_path, class: "btn recharge" %>
             </div>
-            <div class="row">
-              <div class="col-xs-8 col-xs-offset-2">
-                <%= link_to "Edit your profile", edit_user_registration_path, class: "btn edit"  %>
-              </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-8 col-xs-offset-2">
+              <%= link_to "Edit your profile", edit_user_registration_path, class: "btn edit"  %>
             </div>
-            <div class="row">
-              <div class="col-xs-8 col-xs-offset-2">
-                <%= link_to "Delete your account", user_registration_path, class: "btn delete", method: :delete, :data => {:confirm => "You Sure?"} %>
-              </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-8 col-xs-offset-2">
+              <%= link_to "Delete your account", user_registration_path, class: "btn delete", method: :delete, :data => {:confirm => "You Sure?"} %>
             </div>
+          </div>
 
         </div>
       </div>
-
-
-        <% @user.bids.each do |bid| %>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <div class="row">
-          <div class ="col-xs-12 col-sm-6" height="140px">
+      <% if @user.bids.map(&:won).include? true %>
+        <div class ="col-xs-12 col-sm-6" style="height:80vh">
+          <br>
+          <% @user.bids.each do |bid| %>
+          <div class="row">
             <% if bid.won == true %>
-            <h1>You just won a <%=bid.auction.product.name %> !!! </h1>
-            <p style="text-align: center">We just took the money from your wallet. Keep going and bid again!</p>
-              <div class="btn btn-primary">
-                <% if @user.wallet.balance > bid.price %>
-                <%= link_to 'Back to Auctions!!', auctions_path, :class => "btn btn-success"%>
-                <% else %>
-                <%= link_to 'Please recharge your wallet', new_order_path, :class => "btn btn-success" %>
-                <% end %>
-              </div>
+            <div class="col-xs-12 col-sm-6" style="text-align: center">
 
+              <p>You just won a <%=bid.auction.product.name %> !!</p>
+              <div style="text-align: center">
+                <!-- <p>We just took the money from your wallet. Keep going and bid again! </p> -->
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+              <% if @user.wallet.balance > bid.price %>
+              <%= link_to 'Back to Auctions!!', auctions_path, class: "btn back"%>
+              <% else %>
+              <%= link_to 'Recharge your wallet!', new_order_path,class: "btn recharge" %>
+              <% end %>
+            </div>
             <% end %>
           </div>
+          <br>
           <% end %>
+
         </div>
-        </div>
-
-
-
+      <% end %>
+    </div>
+  </div>
 </div>
-
