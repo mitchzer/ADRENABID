@@ -10,7 +10,6 @@
 
           <h1><%= @user.username %>'s profile page</h1>
 
-
           <div class="row">
             <div class="col-xs-6">Username:</div>
             <div class="col-xs-6 gauche"><%= @user.username %></div>
@@ -53,31 +52,31 @@
         </div>
       </div>
       <% if @user.bids.map(&:won).include? true %>
-        <div class ="col-xs-12 col-sm-6" style="height:80vh">
-          <br>
-          <% @user.bids.each do |bid| %>
-          <div class="row">
-            <% if bid.won == true %>
-            <div class="col-xs-12 col-sm-6" style="text-align: center">
+      <div class ="col-xs-12 col-sm-6" style="height:80vh">
+        <br>
+        <% @user.bids.each do |bid| %>
+        <div class="row">
+          <% if bid.won == true %>
+          <div class="col-xs-12 col-sm-6" style="text-align: center">
 
-              <p>You just won a <%=bid.auction.product.name %> !!</p>
-              <div style="text-align: center">
-                <!-- <p>We just took the money from your wallet. Keep going and bid again! </p> -->
-              </div>
+            <p>You just won a <%=bid.auction.product.name %> !!</p>
+            <div style="text-align: center">
+              <!-- <p>We just took the money from your wallet. Keep going and bid again! </p> -->
             </div>
-            <div class="col-xs-12 col-sm-6">
-              <% if @user.wallet.balance > bid.price %>
-              <%= link_to 'Back to Auctions!!', auctions_path, class: "btn back"%>
-              <% else %>
-              <%= link_to 'Recharge your wallet!', new_order_path,class: "btn recharge" %>
-              <% end %>
-            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6">
+            <% if @user.wallet.balance > bid.price %>
+            <%= link_to 'Back to Auctions!!', auctions_path, class: "btn back"%>
+            <% else %>
+            <%= link_to 'Recharge your wallet!', new_order_path,class: "btn recharge" %>
             <% end %>
           </div>
-          <br>
           <% end %>
-
         </div>
+        <br>
+        <% end %>
+
+      </div>
       <% end %>
     </div>
   </div>
