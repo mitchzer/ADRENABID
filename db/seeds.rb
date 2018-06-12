@@ -1,3 +1,4 @@
+Order.destroy_all
 Wallet.destroy_all
 Bid.destroy_all
 Auction.destroy_all

@@ -8,6 +8,7 @@ class UserMailer < ApplicationMailer
   def welcome(user)
    @user = user  # Instance variable => available in view
    #@generated_password = generated_password
+   attachments.inline["final_logo.svg"] = File.read("#{Rails.root}/app/assets/images/final_logo.svg")
     mail(to: @user.email, subject: 'Welcome to Adrenabid')
     # This will render a view in `app/views/user_mailer`!
   end
