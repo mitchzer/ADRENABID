@@ -5,24 +5,23 @@
         <h1>Charge your wallet</h1>
         <br>
         <br>
-        <%= form_tag order_payments_path(@order) do %>
-        <article>
-          <label class="amount">
-            <span>Amount: <%= humanized_money_with_symbol(@order.amount) %></span>
-          </label>
-        </article>
+    <%= form_tag order_payments_path(@order) do %>
+      <article>
+        <label class="amount">
+          <span>Amount you get charged: <%= humanized_money_with_symbol(@order.amount) %></span>
+        </label>
+      </article>
+      <br>
+      <br>
 
-
-        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-        data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-        data-name="Adrenabid"
-        data-email="<%= current_user.email %>"
-        data-description="Charge your wallet"
-        data-amount="<%= @order.amount_cents %>"
-        data-currency="<%= @order.amount.currency %>"></script>
-
-        <% end %>
-        <br>
+          <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-name="Adrenabid"
+          data-email="<%= current_user.email %>"
+          data-description="Charge your wallet"
+          data-amount="<%= @order.amount_cents %>"
+          data-currency="<%= @order.amount.currency %>"></script>
+    <% end %>
         <br>
         <p>We use Stripe as our online payment processor. All transactions are SSL (Secure Socket Layer) protected.</p>
       </div>
