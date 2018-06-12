@@ -11,7 +11,7 @@
         <br>
         <p>Current number of bids: <%= @auction.bids.all.size %> </p>
         <p>Current winning bid price:
-          <% if @auction.bids.count ==0 %>
+          <% if @auction.bids.count == 0 %>
           No bids made yet!
           <% else %>
           <%= humanized_money_with_symbol(@auction.winning_price) %></p>

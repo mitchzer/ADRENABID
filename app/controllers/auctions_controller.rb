@@ -13,6 +13,7 @@ class AuctionsController < ApplicationController
     if @auction.bids.count == 0
     else
      @user = @auction.winning_user
+
       # @user = @auction.winning_user
       UserMailer.auction_won(@user).deliver_now
     end
