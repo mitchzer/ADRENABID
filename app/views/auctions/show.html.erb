@@ -57,6 +57,7 @@
           <br>
 
           <div>
+            <%= bid_error %>
             <%= simple_form_for [ @auction, @bid ] do |f| %>
             <%= f.input :price_cents, placeholder: "Type your bidding price here in cents", label: false %>
             <%= f.submit "Bid !", class: "btn btn-primary" %>
