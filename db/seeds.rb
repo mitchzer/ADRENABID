@@ -64,9 +64,9 @@ user19.wallet.update(balance_cents: 100)
 user20.wallet.update(balance_cents: 100)
 user21.wallet.update(balance_cents: 100)
 
-# auction1 = Auction.create!(starting_time: DateTime.now - 1, ending_time: (DateTime.now + 0.0003), fee_per_bid_cents: 25, price_step_cents: 10, status: 0, min_number_bids: 20, product: product1 )
-# auction2 = Auction.create!(starting_time: DateTime.now - rand(1..4), ending_time: DateTime.now + rand(1..4), fee_per_bid_cents: 10, price_step_cents: 10, status: 1, min_number_bids: 10, product: product2 )
-# auction3 = Auction.create!(starting_time: DateTime.now - rand(1..4), ending_time: DateTime.now + rand(1..4), fee_per_bid_cents: 100, price_step_cents: 100, status: 2, min_number_bids: 10, product: product3 )
+auction1 = Auction.create!(starting_time: DateTime.now - 1, ending_time: (DateTime.now + 0.0003), fee_per_bid_cents: 25, price_step_cents: 10, status: 0, min_number_bids: 20, product: product1 )
+auction2 = Auction.create!(starting_time: DateTime.now - rand(1..4), ending_time: DateTime.now + rand(1..4), fee_per_bid_cents: 10, price_step_cents: 10, status: 1, min_number_bids: 10, product: product2 )
+auction3 = Auction.create!(starting_time: DateTime.now - rand(1..4), ending_time: DateTime.now + rand(1..4), fee_per_bid_cents: 100, price_step_cents: 100, status: 2, min_number_bids: 10, product: product3 )
 
 # bid1 = Bid.create!(price_cents: 130, won: 0, auction: auction1, user: user1)
 # bid2 = Bid.create!(price_cents: 200, won: 0, auction: auction1, user: user1)
