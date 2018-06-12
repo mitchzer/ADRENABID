@@ -8,14 +8,14 @@
   justify-content: space-between;
   height: 70px;
   padding: 0px 50px;
-  color: rgb(20,20,20);
+  color: #8C817B; //rgb(20,20,20);
 }
 .footer-links {
   display: flex;
   align-items: center;
 }
 .footer-links a {
-  color: rgb(20,20,20);
+  color: #8C817B; //rgb(20,20,20);
   opacity: 1;
   text-decoration: none;
   font-size: 24px;
@@ -25,5 +25,5 @@
   opacity: 1;
 }
 .footer .fa-heart {
-  color: #D23333;
+  color: #8C817B;
 }
