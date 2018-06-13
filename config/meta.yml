@@ -1,0 +1,5 @@
+meta_product_name: "Adrenabid"
+meta_title: "Adrenabid - A strategic online auction place"
+meta_description: "Adrenabid is a bidding place platform where the lowest unique bid wins. Buy amazing stuffs at incredible prices"
+meta_image: "/assets/images/pumper.jpg"                       # should exist in `app/assets/images/`
+twitter_account: "@product_twitter_account"   # required for Twitter Cards
