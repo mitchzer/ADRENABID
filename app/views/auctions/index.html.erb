@@ -1,5 +1,5 @@
 <div class="no-decoration" >
-<a href=/auctions/<%= @auctions.first.id %> style="text-decoration: none; color:white;">
+<a href=/auctions/<%= @auctions.last.id %> style="text-decoration: none; color:white;">
 
 <div class="featured-auction">
   <div class="featured-auction-image-card">
@@ -11,14 +11,21 @@
 
   <div class="featured-timer">
     <p style="background-color: red; text-align: center; align-items: center; ">
-  <span id="auction-timer-<%= @auctions.second.id %>" ></span> remaining!
-    </p>
 
+      <% if @auctions.last.status == 1 %>
+            <span id="banner-timer-<%= @auctions.last.id %>"></span>
+          <% else %>
+            <p style="background-color: red; font-size: 40px; text-align: center; align-items: center; "> Sold! </p>
+          <% end %> </p>
+<!--
+  <span id="auction-timer-<%= @auctions.last.id %>" ></span> remaining!-->
+
+    </p>
   </div>
 
   <div class="featured-auction-info">
-    <p style="opacity: 1"> Current number of bids: <%= @auctions.first.bids.count %> </p>
-    <p style="opacity: 1"> Current winning bid: <%= humanized_money_with_symbol(@auctions.first.winning_price.to_f / 100) %></p>
+    <p style="opacity: 1"> Current number of bids: <%= @auctions.last.bids.count %> </p>
+    <p style="opacity: 1"> Current winning bid: <%= humanized_money_with_symbol(@auctions.last.winning_price.to_f / 100) %></p>
   </div>
 <!--
   <div class="how-it-works-card">
@@ -179,6 +186,11 @@
     if (document.querySelector("#auction-timer-<%= auction.id %>")) {
         var timeLeft = <%= auction.ending_time - DateTime.now %>
         var display = document.querySelector("#auction-timer-<%= auction.id %>");
+        window.app.startTimer(timeLeft, display);
+  }
+  if (document.querySelector("#banner-timer-<%= auction.id %>")) {
+        var timeLeft = <%= auction.ending_time - DateTime.now %>
+        var display = document.querySelector("#banner-timer-<%= auction.id %>");
         window.app.startTimer(timeLeft, display);
   }
 
