@@ -141,7 +141,6 @@
       </div>
     </div>
     <br>
-
     <% end %>
   </div>
 
@@ -169,45 +168,52 @@
 
     <br>
 
-    <div class="row">
-      <% array = [] %>
-      <% @auction.bids.sort_by { |b| b.price_cents }.each do |bid|  %>
-      <% if bid.user == current_user %>
-      <% array << humanized_money_with_symbol(bid.price) %>
-      <% end %>
-      <% end %>
 
-      <% unless array.size == 0 %>
-      <div class="currentbids">
-        <div class="col-xs-12">
-          <br>
-          <% if array.size == 1 %>
-          <h1>You did <%= array.size %> bid on this auction:</h1>
-          <% elsif %>
-          <h1>You did <%= array.size %> bids on this auction:</h1>
-          <% end %>
-        </div>
-      </div>
-      <div class="currentbids-prices">
-        <% array.each do |price| %>
-        <div class = "col-xs-6 col-md-2">
-          <li><%= price %></li>
-          <br>
-        </div>
+  <div class="row">
+    <% array = [] %>
+    <% @auction.bids.sort_by { |b| b.price_cents }.each do |bid|  %>
+    <% if bid.user == current_user %>
+    <% array << bid %>
+    <% end %>
+    <% end %>
+
+    <% unless array.size == 0 %>
+    <div class="currentbids">
+      <div class="col-xs-12">
+        <br>
+        <% if array.size == 1 %>
+        <h1 class="main-auction-show-title">You had <%= array.size %> bid on this auction:</h1>
+        <br>
+        <% elsif %>
+        <h1 class="main-auction-show-title">You had <%= array.size %> bids on this auction:</h1>
+        <br>
         <% end %>
       </div>
-      <% else %>
-      <div class="currentbids">
-        <div class="col-xs-12">
-          <p>You did not bid on this auction</p>
-        </div>
+    </div>
+    <div class="currentbids-prices">
+      <div class="row">
+        <div class="col-xs-4 price-table-header left">Bid price</div>
+        <div class="col-xs-4 price-table-header center">Created at</div>
+        <div class="col-xs-4 price-table-header right">Bid id</div>
       </div>
-      <br>
-
+      <% array.each do |bid| %>
+      <div class="row">
+        <div class="col-xs-4 left"><%= humanized_money_with_symbol(bid.price) %></div>
+        <div class="col-xs-4 center"><%= bid.created_at.to_formatted_s(:short) %></div>
+        <div class="col-xs-4 right"><%= bid.id %></div>
+      </div>
       <% end %>
     </div>
+    <% else %>
+    <div class="currentbids">
+      <div class="col-xs-12">
+        <p>You did not bid for this auction</p>
+      </div>
+    </div>
     <br>
-    <br>
+    <% end %>
+  </div>
+
 
     <% elsif @auction.status == 0 %>
 
