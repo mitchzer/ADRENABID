@@ -14,8 +14,9 @@
   <div class="row">
 
     <div class="col-xs-12 col-sm-4">
-      <div class="auction-details">
-        <div class="stressful-timing"><p>Auction ends in:</p><span id="time"></span>!</div>
+      <% @auction.photo.url.nil? ?  url = "http://res.cloudinary.com/dylz8qoqc/image/upload/v1527784270/sample.jpg" : url =  @auction.photo.url %>
+      <div class="auction-details" style="background-image: linear-gradient(-225deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.1) 40%), url('<%= cl_image_path url, crop: :fill %>')">
+        <div class="stressful-timing"><p class="red">Auction ends in:</p><span id="time"></span>!</div>
         <br>
         <div class="row">
           <div class="col-xs-9">
@@ -75,7 +76,7 @@
           </div>
 
           <div class="col-xs-6 col-sm-3 center">
-            <div class="bid-item">
+            <div class="bid-item <%= "red" if bid_error == "Must be a proper mutliple of #{(@auction.price_step.to_f*100).to_i} cents" %>">
               <p>Your can bid every:</p>
               <p><%= humanized_money_with_symbol(@auction.price_step) %></p>
             </div>

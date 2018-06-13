@@ -56,6 +56,16 @@
   text-align: center;
   border: 3px solid red;
   padding: 10px 10px;
+  background-color: white;
+}
+
+.red {
+  color: red;
+  border-color: red !important;
+}
+
+.red p {
+  color: red;
 }
 
 .single-bid {
