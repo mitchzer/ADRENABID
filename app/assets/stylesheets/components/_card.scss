@@ -21,11 +21,14 @@
 //   font-size:18px;
 // }
 
+.card .grow { transition: all .2s ease-in-out; }
+.card:hover { transform: scale(1.1); }
+
 .card:hover .card-category{
   font-size:18px;
 
-  text-decoration: underline;
-  text-decoration-color: red;
+  // text-decoration: underline;
+  // text-decoration-color: red;
 }
 
 
@@ -78,7 +81,7 @@ text-align: center;
   opacity: 0;
 }
 .card-link:hover {
-  opacity: 0.1;
+  // opacity: 0.1;
 }
 
 .card-price {
