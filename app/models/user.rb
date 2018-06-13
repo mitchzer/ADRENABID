@@ -19,6 +19,9 @@ class User < ApplicationRecord
     end
   end
 
+  def product_won
+    self.bids.joins(:auction).where(won: true).where("auctions.status = 2")
+  end
 private
 
   def send_welcome_email
