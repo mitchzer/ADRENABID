@@ -14,6 +14,9 @@ class User < ApplicationRecord
 
   def create_user_wallet
     Wallet.create(user: self)
+    if self.promo_code == "LEWAGON"
+      self.wallet.update(balance_cents: 200)
+    end
   end
 
 private

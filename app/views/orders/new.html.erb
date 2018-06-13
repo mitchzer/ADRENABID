@@ -2,15 +2,28 @@
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
       <div class="new_order_center">
-        <h1>Recharge your wallet here</h1>
+        <h1>Here you can recharge your wallet</h1>
         <br>
         <br>
         <br>
         <%= simple_form_for @order do |f| %>
-          <%= f.input :amount, placeholder: 'Select amount in €', label: false %>
-          <%= f.submit "Recharge" %>
+          <%= f.input :amount, placeholder: 'Select amount in €', label: 'Just type in the amount you want to charge on your account', label_html: { class: "abc" } %>
+          <%= f.submit :class => "btn btn-primary", value: "Recharge" %>
         <% end %>
+
+        <style>
+          .abc {
+                font-size: 10px;
+                }
+        </style>
+
+
+        <br>
+        <br>
+        <p>Please make sure to use integral and only positive numbers. </p>
       </div>
     </div>
   </div>
 </div>
+
+

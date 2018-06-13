@@ -12,7 +12,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   def user_params
-    params.require(:user).permit(:email)
+    params.require(:user).permit(:email, :promo_code)
   end
 
   def after_sign_up_path_for(resource)

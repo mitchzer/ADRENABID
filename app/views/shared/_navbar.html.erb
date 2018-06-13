@@ -1,7 +1,7 @@
 <div class="navbar-wagon">
   <!-- Logo -->
   <%= link_to root_path, class: "navbar-wagon-brand" do %>
-    <%= image_tag "adrenabid.svg", height: 50 %>
+  <%= image_tag "adrenabid.svg", height: 50 %>
   <% end %>
 
   <!-- Right Navigation -->
@@ -9,47 +9,44 @@
 
     <% if user_signed_in? %>
 
-      <!-- Links when logged in -->
-      <%= link_to  "How it works", info_path, class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to  "My Profile", user_path(current_user), class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Current auctions", auctions_path, class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "My balance: #{humanized_money_with_symbol(current_user.wallet.balance)}", new_order_path, class: "navbar-wagon-item navbar-wagon-link profile-balance-num" %>
-      <%= link_to "Log out", destroy_user_session_path,  method: :delete, class: "navbar-wagon-item navbar-wagon-link" %>
 
-
-
-
+    <!-- Links when logged in -->
+    <%= link_to  "How it works", info_path, class: "navbar-wagon-item navbar-wagon-link" %>
+    <%= link_to  "My Profile", user_path(current_user), class: "navbar-wagon-item navbar-wagon-link" %>
+    <%= link_to "Current auctions", auctions_path, class: "navbar-wagon-item navbar-wagon-link" %>
+    <%= link_to "My balance: #{humanized_money_with_symbol(current_user.wallet.balance)}", new_order_path, class: "navbar-wagon-item navbar-wagon-link profile-balance-num" %>
+    <%= link_to "Log out", destroy_user_session_path,  method: :delete, class: "navbar-wagon-item navbar-wagon-link" %>
 
     <% else %>
-      <!-- Login link (when logged out) -->
-      <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+    <!-- Login link (when logged out) -->
+    <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
     <% end %>
   </div>
 
   <!-- Dropdown list appearing on mobile only -->
   <div class="navbar-wagon-item hidden-md hidden-lg">
     <% if current_user %>
-            <%=  "#{humanized_money_with_symbol(current_user.wallet.balance)}" %>
+    <%=  "#{humanized_money_with_symbol(current_user.wallet.balance)}" %>
     <% end  %>
     <div class="dropdown">
       <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
         <% if current_user %>
-          <li>
-            <%= link_to  "My Profile", user_path(current_user), class: "mobile_navbar-wagon-link" %>
-          </li>
+        <li>
+          <%= link_to  "My Profile", user_path(current_user), class: "mobile_navbar-wagon-link" %>
+        </li>
         <% end %>
-          <li>
-            <%= link_to "Current auctions", auctions_path, class: "mobile_navbar-wagon-link" %>
-          </li>
-          <li>
-            <%= link_to  "How it works", info_path, class: "mobile_navbar-wagon-link" %>
-          </li>
-          <li>
-            <%= link_to destroy_user_session_path, method: :delete do %>
-            <%= t(".sign_out", default: "Log out") %>
-            <% end %>
-          </li>
+        <li>
+          <%= link_to "Current auctions", auctions_path, class: "mobile_navbar-wagon-link" %>
+        </li>
+        <li>
+          <%= link_to  "How it works", info_path, class: "mobile_navbar-wagon-link" %>
+        </li>
+        <li>
+          <%= link_to destroy_user_session_path, method: :delete do %>
+          <%= t(".sign_out", default: "Log out") %>
+          <% end %>
+        </li>
       </ul>
     </div>
   </div>
