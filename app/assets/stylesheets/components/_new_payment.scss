@@ -8,20 +8,32 @@
   font-size: 15px;
   text-align: center;
   width: 100%;
-
 }
 
-  h1 {
+.new_payment_center h1 {
     color: #FFFFF0;
     font-size: 28px;
-    text-align: center;
+    text-align: center !important;
     text-decoration: underline;
     text-decoration-color: red;
   }
 
-  p {
+.new_payment_center p {
     color: #FFFFF0;
   }
+
+.new_order_center h1 {
+    color: #FFFFF0;
+    font-size: 28px;
+    text-align: center !important;
+    text-decoration: underline;
+    text-decoration-color: red;
+  }
+
+.new_order_center p {
+    color: #FFFFF0;
+  }
+
 .amount {
   color: #FFFFF0;
 }
