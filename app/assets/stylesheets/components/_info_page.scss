@@ -4,7 +4,7 @@
 
 
 .info_page_center {
-  height: 1000px;
+  min-height: 1000px;
   color: #FFFFF0;
   background-color: rgb(20,20,20);
   margin-top: 40px;
@@ -14,4 +14,14 @@
   text-align: center;
   width: 100%;
 
+}
+
+.info_page_center img {
+  width: 100%;
+}
+
+@media all and (max-width: 600px) {
+    .info_page_center {
+        padding: 20px 20px 20px 20px;
+    }
 }
