@@ -1,40 +1,36 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-6 col-xl-5 offset-xl-1">
-      <div class="new_order_center">
-        <h1>Here you can recharge your wallet</h1>
-        <br>
-        <br>
-        <br>
-        <%= simple_form_for @order do |f| %>
-          <%= f.input :amount, placeholder: 'Select amount in €', label: 'Just type in the amount you want to charge on your account', label_html: { class: "abc" } %>
-          <%= f.submit :class => "btn btn-primary", value: "Recharge" %>
-        <% end %>
-
-        <style>
-          .abc {
-                font-size: 10px;
-                }
-        </style>
-
-
-        <br>
-        <br>
-        <p>Please make sure to use integral and only positive numbers. </p>
+<div class="wrapper_new">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-xl-5 offset-xl-1">
+        <div class="new_order_center">
+          <h1>Here you can recharge your wallet</h1>
+          <br>
+          <br>
+          <br>
+          <%= simple_form_for @order do |f| %>
+            <%= f.input :amount, placeholder: 'Select amount in €', label: 'Just type in the amount you want to charge on your account', label_html: { class: "abc" } %>
+            <%= f.submit :class => "btn btn-primary", value: "Recharge" %>
+          <% end %>
+          <style>
+            .abc {
+                  font-size: 10px;
+                  }
+          </style>
+          <br>
+          <br>
+          <p>Please make sure to use integral and only positive numbers. </p>
+        </div>
       </div>
-    </div>
-    <div class="col-md-6 col-xl-5 offset-xl-1">
-      <img class="image" style="width: 500px" src="/assets/aviation_01.jpg" alt="">
-      <br>
-      <br>
-      <p>Your chance to live the dream </p>
+      <div class="col-md-6 col-xl-5 offset-xl-1 center">
+        <img class="image" style="width: 550px; margin: 0 auto; margin-top: 40px" src="/assets/aviation_01.jpg" alt="">
+        <br>
+        <br>
+        <p style="font-size: 15px">Your chance to live the dream </p>
 
-      <p>Your ultimate luxury experience is only a bid away with AdrenaBiD. It’s that simple.</p>
-
-      <p>We aim to provide you with a lifestyle experience of a lifetime with products that will wow you and your guests.</p>
+        <p style="font-size: 15px">Your ultimate luxury experience is only a bid away. It’s that simple.</p>
+        </div>
       </div>
     </div>
   </div>
 </div>
-
 
