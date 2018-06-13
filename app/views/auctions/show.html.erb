@@ -23,10 +23,10 @@
             <p>Current number of bids:</p>
           </div>
           <div class="col-xs-3 right">
-            <% if @auction.bids.all.size <= 1 %>
-            <p><%= @auction.bids.all.size %> bid</p>
+            <% if @auction.bids.all.count <= 1 %>
+            <p><%= @auction.bids.all.count %> bid</p>
             <% else %>
-            <p><%= @auction.bids.all.size %> bids</p>
+            <p><%= @auction.bids.all.count %> bids</p>
             <% end %>
           </div>
         </div>
@@ -112,9 +112,11 @@
       <div class="col-xs-12">
         <br>
         <% if array.size == 1 %>
-        <h1>You have currently <%= array.size %> bid on this auction:</h1>
+        <h1 class="main-auction-show-title">You have currently <%= array.size %> bid on this auction:</h1>
+        <br>
         <% elsif %>
-        <h1>You have currently <%= array.size %> bids on this auction:</h1>
+        <h1 class="main-auction-show-title">You have currently <%= array.size %> bids on this auction:</h1>
+        <br>
         <% end %>
       </div>
     </div>
