@@ -7,12 +7,16 @@
   border-radius: 5px;
   font-size: 15px;
   text-align: center;
+  width: 100%;
+
 }
 
   h1 {
     color: #FFFFF0;
     font-size: 28px;
     text-align: center;
+    text-decoration: underline;
+    text-decoration-color: red;
   }
 
   p {
@@ -21,3 +25,4 @@
 .amount {
   color: #FFFFF0;
 }
+

@@ -15,6 +15,7 @@ skip_after_action :verify_policy_scoped, :verify_authorized
     @order.user = current_user
     if @order.save
       redirect_to new_order_payment_path(@order)
+
     else
       render :new
     end
