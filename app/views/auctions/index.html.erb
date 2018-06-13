@@ -10,7 +10,7 @@
         <div>
           <% auction.auction_status %>
           <% auction.photo.url.nil? ?  url = "http://res.cloudinary.com/dylz8qoqc/image/upload/v1527784270/sample.jpg" : url = auction.photo.url %>
-          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.3)), url('<%= cl_image_path url, crop: :fill %>')">
+          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(230,230,230,0.1)), url('<%= cl_image_path url, crop: :fill %>')">
             <div class="card-category"><%= auction.product.name %></div>
             <div class="card-description" style="text-align: left">
               <% if auction.status == 1 %>
