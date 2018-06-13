@@ -1,83 +1,126 @@
-<div class="wrapper">
+<div class="container">
+  <div class="row">
+    <% if (@user.bids.empty?  || @user.bids.where(won: true).count == 0) %>
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
 
-  <div class="container">
+      <div class="profile">
+        <h1><%= @user.username %>'s profile page</h1>
 
-    <div class="row profile-wrapper">
+        <div class="row">
+          <div class="col-xs-6">Username:</div>
+          <div class="col-xs-6 gauche"><%= @user.username %></div>
+        </div>
 
-      <div class ="col-xs-12 col-sm-6 ">
+        <div class="row">
+          <div class="col-xs-6">Email address:</div>
+          <div class="col-xs-6 gauche"><%= @user.email %></div>
+        </div>
 
-        <div class="profile">
+        <div class="row">
+          <div class="col-xs-6">Shipping address:</div>
+          <div class="col-xs-6 gauche"><%= @user.address %></div>
+        </div>
 
-          <h1><%= @user.username %>'s profile page</h1>
+        <div class="row">
+          <div class="col-xs-6">Current balance:</div>
+          <div class="col-xs-6 gauche profile-balance-num"><%= humanized_money_with_symbol(@user.wallet.balance) %></div>
+        </div>
 
-          <div class="row">
-            <div class="col-xs-6">Username:</div>
-            <div class="col-xs-6 gauche"><%= @user.username %></div>
+        <br>
+        <br>
+
+        <div class="row">
+          <div class="col-xs-8 col-xs-offset-2">
+            <%= link_to "Charge your wallet", new_order_path, class: "btn recharge" %>
           </div>
-
-          <div class="row">
-            <div class="col-xs-6">Email address:</div>
-            <div class="col-xs-6 gauche"><%= @user.email %></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-8 col-xs-offset-2">
+            <%= link_to "Edit your profile", edit_user_registration_path, class: "btn edit"  %>
           </div>
-
-          <div class="row">
-            <div class="col-xs-6">Shipping address:</div>
-            <div class="col-xs-6 gauche"><%= @user.address %></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-8 col-xs-offset-2">
+            <%= link_to "Delete your account", user_registration_path, class: "btn delete", method: :delete, :data => {:confirm => "You Sure?"} %>
           </div>
-
-          <div class="row">
-            <div class="col-xs-6">Current balance:</div>
-            <div class="col-xs-6 gauche profile-balance-num"><%= humanized_money_with_symbol(@user.wallet.balance) %></div>
-          </div>
-
-          <br>
-          <br>
-
-          <div class="row">
-            <div class="col-xs-8 col-xs-offset-2">
-              <%= link_to "Charge your wallet", new_order_path, class: "btn recharge" %>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-xs-8 col-xs-offset-2">
-              <%= link_to "Edit your profile", edit_user_registration_path, class: "btn edit"  %>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-xs-8 col-xs-offset-2">
-              <%= link_to "Delete your account", user_registration_path, class: "btn delete", method: :delete, :data => {:confirm => "You Sure?"} %>
-            </div>
-          </div>
-
         </div>
       </div>
-      <% if @user.bids.map(&:won).include? true %>
-      <div class ="col-xs-12 col-sm-6" style="height:80vh">
-        <br>
-        <% @user.bids.each do |bid| %>
-        <div class="row">
-          <% if bid.won == true %>
-          <div class="col-xs-12 col-sm-6" style="text-align: center">
 
-            <p>You just won a <%=bid.auction.product.name %> !!</p>
-            <div style="text-align: center">
-              <!-- <p>We just took the money from your wallet. Keep going and bid again! </p> -->
-            </div>
+    </div>
+
+    <% else %>
+
+      <div class="col-xs-12 col-sm-6">
+      <div class="profile">
+        <h1><%= @user.username %>'s profile page</h1>
+
+        <div class="row">
+          <div class="col-xs-6">Username:</div>
+          <div class="col-xs-6 gauche"><%= @user.username %></div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-6">Email address:</div>
+          <div class="col-xs-6 gauche"><%= @user.email %></div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-6">Shipping address:</div>
+          <div class="col-xs-6 gauche"><%= @user.address %></div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-6">Current balance:</div>
+          <div class="col-xs-6 gauche profile-balance-num"><%= humanized_money_with_symbol(@user.wallet.balance) %></div>
+        </div>
+
+        <br>
+        <br>
+
+        <div class="row">
+          <div class="col-xs-8 col-xs-offset-2">
+            <%= link_to "Charge your wallet", new_order_path, class: "btn recharge" %>
           </div>
-          <div class="col-xs-12 col-sm-6">
-            <% if @user.wallet.balance > bid.price %>
-            <%= link_to 'Back to Auctions!!', auctions_path, class: "btn back"%>
-            <% else %>
-            <%= link_to 'Recharge your wallet!', new_order_path,class: "btn recharge" %>
-            <% end %>
+        </div>
+        <div class="row">
+          <div class="col-xs-8 col-xs-offset-2">
+            <%= link_to "Edit your profile", edit_user_registration_path, class: "btn edit"  %>
           </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-8 col-xs-offset-2">
+            <%= link_to "Delete your account", user_registration_path, class: "btn delete", method: :delete, :data => {:confirm => "You Sure?"} %>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-6">
+
+      <% @user.bids.each do |bid| %>
+      <div class="row">
+        <% if bid.won == true %>
+        <div class="col-xs-12 col-sm-6" style="text-align: center">
+
+          <p>You just won a <%=bid.auction.product.name %> !!</p>
+          <div style="text-align: center">
+            <!-- <p>We just took the money from your wallet. Keep going and bid again! </p> -->
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+          <% if @user.wallet.balance > bid.price %>
+          <%= link_to 'Back to Auctions!!', auctions_path, class: "btn back"%>
+          <% else %>
+          <%= link_to 'Recharge your wallet!', new_order_path,class: "btn recharge" %>
           <% end %>
         </div>
-        <br>
         <% end %>
-
       </div>
       <% end %>
-    </div>
+
+      </div>
+
+    <% end %>
+
   </div>
 </div>
