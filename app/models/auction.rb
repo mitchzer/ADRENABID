@@ -45,8 +45,7 @@ def winning_user
     self.bids.where(won: true).each do |bid|
       bid.update(won: false)
     end
-    @bid.won = true
-    @bid.save
+    @bid.update(won: true)
     @bid.user
   end
 end
