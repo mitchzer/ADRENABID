@@ -20,12 +20,17 @@ class Auction < ApplicationRecord
     freq = bid_frequencies
     unique_bids = freq.select {|price, frequency| frequency == 1}
     ordered_prices = unique_bids.sort_by{ |price, frequency| price }
+
     if ordered_prices.empty?
       unique_bids = freq.select {|price, frequency| frequency == 2}
       ordered_prices = unique_bids.sort_by{ |price, frequency| price }
-      winning_price = ordered_prices.first.first
+      unless ordered_prices.empty?
+        result = ordered_prices.first.first
+      else
+        result = 0
+      end
     else
-    winning_price = ordered_prices.first.first
+      result = ordered_prices.first.first
     end
   end
 
@@ -35,23 +40,22 @@ class Auction < ApplicationRecord
 
 # winning_user returns user object
   def winning_user
-      @bid = winning_bid
+    @bid = winning_bid
+    if @bid
       @bid.won = true
       @bid.save
-      id = winning_bid.user_id
-      User.where(:id => id).first
+      @bid.user
+    end
   end
 
-  def auction_status
-    if DateTime.now < self.ending_time && DateTime.now > self.starting_time
+  def set_auction_status
+    if DateTime.now < self.ending_time && DateTime.now > self.starting_time && self.status == 0
       self.status = 1
       save
-    elsif DateTime.now > self.ending_time
+    elsif DateTime.now >= self.ending_time && self.status == 1
       self.status = 2
       save
-    else
-      self.status = 0
-      save
+      UserMailer.auction_won(self.winning_user).deliver_now
     end
   end
 

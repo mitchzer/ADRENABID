@@ -87,7 +87,6 @@
     <% @auctions.each do |auction| %>
       <div class="col-xs-12 col-sm-4 card-style">
         <div>
-          <% auction.auction_status %>
           <% auction.photo.url.nil? ?  url = "http://res.cloudinary.com/dylz8qoqc/image/upload/v1527784270/sample.jpg" : url = auction.photo.url %>
           <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(230,230,230,0.1)), url('<%= cl_image_path url, crop: :fill %>')">
 

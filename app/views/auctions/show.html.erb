@@ -23,10 +23,11 @@
             <p>Current number of bids:</p>
           </div>
           <div class="col-xs-3 right">
-            <% if @auction.bids.all.count <= 1 %>
-            <p><%= @auction.bids.all.count %> bid</p>
+            <% if @auction.bids.count <= 1 %>
+            <p><%= @auction.bids.count %> bid</p>
             <% else %>
-            <p><%= @auction.bids.all.count %> bids</p>
+            <p><%= @auction.bids.count %> bids</p>
+
             <% end %>
           </div>
         </div>
@@ -35,10 +36,10 @@
             <p>Current winning price bid:</p>
           </div>
           <div class="col-xs-3 right">
-            <% if @auction.bids.count == 0 %>
+            <% if @auction.bids.count == 0 || @auction.winning_user.nil? %>
             <p>No bid, no winning price !</p>
             <% else %>
-            <p><%= humanized_money_with_symbol(@auction.winning_user.bids.where(won: true).first.price) %></p>
+            <p><%= humanized_money_with_symbol(@auction.winning_price.to_f / 100) %></p>
             <% end %>
           </div>
         </div>
@@ -155,13 +156,13 @@
         <h1><%= @auction.product.name %></h1>
         <p><i>Auction completed on <%= @auction.ending_time.strftime('%x') %></i></p>
         <br>
-        <p>Final number of bids: <%= @auction.bids.all.size %> </p>
+        <p>Final number of bids: <%= @auction.bids.count %> </p>
         <p>Final winning bid price: <% if @auction.bids.count ==0 %>
           No bids were made!
           <% else %>
-          <%= humanized_money_with_symbol(@auction.winning_price) %>
+          <%= humanized_money_with_symbol(@auction.winning_price.to_f / 100) %>
           <% end %></p>
-          <p>Final winner: <%= @auction.winning_user.username %></p>
+          <p>Final winner: <%= @auction.winning_user.username if @auction.winning_user  %></p>
         </div>
       </div>
     </div>
@@ -267,7 +268,7 @@
     }
 
     window.onload = function () {
-      var timeLeft = <%=@auction.ending_time - DateTime.now%>
+      var timeLeft = <%= @auction.ending_time - DateTime.now %>
       display = document.querySelector('#time');
       startTimer(timeLeft, display);
     };
