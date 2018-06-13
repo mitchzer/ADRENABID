@@ -4,6 +4,7 @@
 <div class="featured-auction">
   <div class="featured-auction-image-card">
     <div class="featured-auction-category">
+      <p style="">
     6 cold beers
   </div>
   </div>
@@ -32,7 +33,7 @@
 </a>
 </div>
 
-<div class="wrapper-grey">
+<div class="wrapper-grey" style="background-color: #141414">
       <div class="container">
         <div class="row" style="text-align: center;">
            <div class="col-xs-12 col-md-4 " >
@@ -60,7 +61,7 @@
             </h1>
          <!--    <h3 >Strategize
             </h4> -->
-              <p>Bid the lowest price that you think no other player will choose
+              <p>Bid the lowest price that you think no one else will choose
               <p>
               </p>
             </div>
@@ -79,25 +80,28 @@
         </div>
       </div>
 
-
-<h3>Current Auctions</h3>
 <div class="container" id="container-auction-index">
+  <h3 style="text-decoration: underline; text-decoration-color: red; text-align: center">Active Auctions</h3>
   <div class="row">
 
     <% @auctions.each do |auction| %>
-      <div class="col-xs-12 col-sm-4 card-style">
+      <div class="col-xs-12 col-sm-6 col-md-4 card-style">
         <div>
           <% auction.auction_status %>
-          <% auction.photo.url.nil? ?  url = "http://res.cloudinary.com/dylz8qoqc/image/upload/v1527784270/sample.jpg" : url = auction.photo.url %>
+          <% auction.photo.url.nil? ?  url = "https://assets.wired.com/photos/w_1164/wp-content/uploads/2017/11/iphonex-TA.jpg" : url = auction.photo.url %>
           <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(230,230,230,0.1)), url('<%= cl_image_path url, crop: :fill %>')">
 
             <div class="card-category"><%= auction.product.name %></div>
-            <div class="card-description" style="text-align: left">
+            <div class="card-description">
               <% if auction.status == 1 %>
-            <div><span id="auction-timer-<%= auction.id %>"></span> remaining!</div>
+            <div><span id="auction-timer-<%= auction.id %>"></span></div>
           <% else %>
             <div>Auction not running</div>
           <% end %>
+            </div>
+            <div class="card-price">
+              £0.33
+
             </div>
             <img class="card-user" src="">
             <a class="card-link" <%= link_to auction.product.name, auction_path(auction) %></a>
@@ -113,6 +117,46 @@
     <% end %>
   </div>
 </div>
+
+<div class="container" id="container-auction-index">
+  <h3 style="text-decoration: underline; text-decoration-color: red; text-align: center">Completed Auctions</h3>
+  <div class="row">
+
+    <% @auctions.each do |auction| %>
+      <div class="col-xs-12 col-sm-6 col-md-4 card-style">
+        <div>
+          <% auction.auction_status %>
+          <% auction.photo.url.nil? ?  url = "https://assets.wired.com/photos/w_1164/wp-content/uploads/2017/11/iphonex-TA.jpg" : url = auction.photo.url %>
+          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(230,230,230,0.1)), url('<%= cl_image_path url, crop: :fill %>')">
+
+            <div class="card-category"><%= auction.product.name %></div>
+            <div class="card-description">
+              <% if auction.status == 1 %>
+            <div><span id="auction-timer-<%= auction.id %>"></span></div>
+          <% else %>
+            <div>Auction not running</div>
+          <% end %>
+            </div>
+            <div class="card-price">
+
+            </div>
+            <img class="card-user" src="">
+            <a class="card-link" <%= link_to auction.product.name, auction_path(auction) %></a>
+          </div>
+
+
+          <% if policy(Auction).user_admin? %>
+            <%= link_to "Edit this auction", edit_auction_path(auction) %> <br>
+            <%= button_to "Delete this auction", auction, method: :delete, :data => {:confirm => "Are you sure?"} %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+
 
 
 <%= content_for :after_js do %>
