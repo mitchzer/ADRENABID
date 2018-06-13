@@ -87,7 +87,7 @@
     <% @auctions.each do |auction| %>
       <div class="col-xs-12 col-sm-6 col-md-4 card-style">
         <div>
-          <% auction.auction_status %>
+          <% auction.set_auction_status %>
           <% auction.photo.url.nil? ?  url = "https://assets.wired.com/photos/w_1164/wp-content/uploads/2017/11/iphonex-TA.jpg" : url = auction.photo.url %>
           <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(230,230,230,0.1)), url('<%= cl_image_path url, crop: :fill %>')">
 
@@ -125,7 +125,7 @@
     <% @auctions.each do |auction| %>
       <div class="col-xs-12 col-sm-6 col-md-4 card-style">
         <div>
-          <% auction.auction_status %>
+          <% auction.set_auction_status %>
           <% auction.photo.url.nil? ?  url = "https://assets.wired.com/photos/w_1164/wp-content/uploads/2017/11/iphonex-TA.jpg" : url = auction.photo.url %>
 
           <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(230,230,230,0.1)), url('<%= cl_image_path url, crop: :fill %>')">
