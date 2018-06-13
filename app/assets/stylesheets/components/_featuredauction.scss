@@ -1,0 +1,121 @@
+.featured-auction {
+  position: relative;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 100%;
+  height: 400px; /* 1vh => 1% of viewport height */
+  // background-image:  url('https://silverbirdsafari-africa.com/blog/wp-content/uploads/2015/12/Maldives.jpg');
+  // // https://silverbirdsafari-africa.com/blog/wp-content/uploads/2015/12/Maldives.jpg
+  // background-size: contain;
+
+  // background-repeat: no-repeat;
+  background-color: #141414;
+  border-top: 2px solid red;
+
+  text-shadow: 0 1px 6px rgba(0,0,0,0.9);
+}
+
+.featured-auction-image-card {
+  grid-row: 1 / span 1;
+  grid-column: 1 / span 1;
+  // background-image:  url('https://silverbirdsafari-africa.com/blog/wp-content/uploads/2015/12/Maldives.jpg');
+   background-image:  url('https://www.star2.com/wp-content/uploads/2015/10/beer-e1444989514150-1170x480.jpg');
+  background-size: cover !important;
+  background-position: center;
+
+  background-repeat: no-repeat;
+  background-color: white;
+}
+
+// .img {
+// max-width:100%;
+// max-height:100%;
+// }
+
+.featured-auction-details {
+  // position: relative;
+ text-align: left;
+  font-size: 24px;
+    position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+.featured-auction-category {
+  position: relative;
+  top: 10px;
+  left: 15px;
+  font-size: 50px;
+  color: white;
+  text-decoration: none;
+}
+
+.featured-auction-category:hover {
+
+
+}
+
+.featured-auction-ticker {
+  position: absolute;
+  bottom: 10px;
+  // left: 0;
+}
+
+.featured-timer {
+  // text-align: center !important;
+  font-size: 24px;
+  position: absolute;
+  bottom: 10px;
+  left: 15px;
+  // align-items: center !important;
+}
+
+.marquee {
+  position: relative;
+  overflow: hidden;
+  height: 30px;
+  width: 1000px;
+  // border: 1px solid orange;
+}
+
+.marquee p {
+  position: absolute;
+  margin: 0;
+  line-height: 25px;
+  white-space: nowrap;
+  animation: marquee 8s linear infinite;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.no-decoration{
+  text-decoration: none;
+}
+.no-decoration:hover .featured-auction-category{
+  // font-size: 58px;
+  text-decoration: underline;
+  text-decoration-color: red;
+}
+
+.timer-bottom {
+  background-color: red;
+  height: 50px;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.featured-auction-info {
+  position: absolute;
+  bottom: 80px;
+  left: 15px;
+  background-color: black;
+  opacity: 0.6;
+  padding: 6px;
+}
+
+.featured-auction-info p {
+  font-size: 22
+}

@@ -1,7 +1,81 @@
+<div class="no-decoration" >
+<a href=auction_path(<% @auctions.first %>) style="text-decoration: none">
 
-<br>
-<br>
-<br>
+<div class="featured-auction">
+  <div class="featured-auction-image-card">
+    <div class="featured-auction-category">
+    6 cold beers
+  </div>
+  </div>
+
+  <div class="featured-timer">
+    <p style="background-color: red; font-size: 28px; text-align: center; align-items: center; ">
+  <span id="auction-timer-<%= @auctions.second.id %>" ></span> remaining!
+    </p>
+
+  </div>
+
+  <div class="featured-auction-info">
+    <p style="opacity: 1"> Current number of bids: <%= @auctions.first.bids.count %> </p>
+    <p style="opacity: 1"> Current winning bid: <%= humanized_money_with_symbol(@auctions.first.winning_price) %> </p>
+  </div>
+<!--
+  <div class="how-it-works-card">
+    <p>1. Choose your item </p>
+    <p>
+
+
+  </div>
+ -->
+
+</div>
+</a>
+</div>
+<!--
+<div class="wrapper-grey">
+      <div class="container">
+        <div class="row" style="text-align: center;">
+           <div class="col-xs-12 col-md-4 " >
+            <div class="card-white">
+               <h1>
+
+            </h1>
+            <h3 >Choose your item
+            </h4>
+              <p>
+                Pick from our selection of luxury auctions below
+              </p>
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-md-4" style="text-align: center;">
+            <div class="card-white">
+              <h1>
+
+            </h1>
+            <h3 >Strategize
+            </h4>
+              <p>Choose the lowest price that you think no other player will choose
+              <p>
+              </p>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-4" style="text-align: center;">
+            <div class="card-white">
+               <h1>
+
+            </h1>
+            <h3>Place your bid
+            </h4>
+              <p>The more bids you make, the greater your chances of landing your item at a massive discount
+              </p>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+
+<h3>Current Auctions</h3>
 <div class="container" id="container-auction-index">
   <div class="row">
 
@@ -11,6 +85,7 @@
           <% auction.auction_status %>
           <% auction.photo.url.nil? ?  url = "http://res.cloudinary.com/dylz8qoqc/image/upload/v1527784270/sample.jpg" : url = auction.photo.url %>
           <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(230,230,230,0.1)), url('<%= cl_image_path url, crop: :fill %>')">
+
             <div class="card-category"><%= auction.product.name %></div>
             <div class="card-description" style="text-align: left">
               <% if auction.status == 1 %>
