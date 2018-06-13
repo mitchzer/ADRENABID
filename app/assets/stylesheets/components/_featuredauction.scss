@@ -63,7 +63,7 @@
 
 .featured-timer {
   // text-align: center !important;
-  font-size: 24px;
+  font-size: 28px;
   position: absolute;
   bottom: 10px;
   left: 15px;
@@ -120,3 +120,15 @@
 .featured-auction-info p {
   font-size: 22
 }
+
+@media (max-width: 600px) {
+  .featured-timer {
+  // text-align: center !important;
+  font-size: 20px;
+  position: absolute;
+  bottom: 10px;
+  left: 15px;
+  // align-items: center !important;
+}
+}
+
