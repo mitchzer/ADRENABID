@@ -127,6 +127,7 @@
         <div>
           <% auction.auction_status %>
           <% auction.photo.url.nil? ?  url = "https://assets.wired.com/photos/w_1164/wp-content/uploads/2017/11/iphonex-TA.jpg" : url = auction.photo.url %>
+
           <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(230,230,230,0.1)), url('<%= cl_image_path url, crop: :fill %>')">
 
             <div class="card-category"><%= auction.product.name %></div>

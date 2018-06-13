@@ -5,12 +5,12 @@ Auction.destroy_all
 Product.destroy_all
 User.destroy_all
 
-#admin1 = User.create!(username:"Abel", email:"locatiabelal@gmail.com", address:"Metz", password: "lewagon", admin: true)
+admin1 = User.create!(username:"Abel", email:"locatiabelal@gmail.com", address:"Metz", password: "lewagon", admin: true)
 admin2 = User.create!(username:"Alex", email:"alex@gmail.com", address:"Frankfurt", password: "lewagon", admin: true)
 admin3 = User.create!(username:"Tony", email:"tony@gmail.com", address:"Glasgow", password: "lewagon", admin: true)
 admin4 = User.create!(username:"Mitch", email:"mitch@gmail.com", address:"Paris", password: "lewagon", admin: true)
 
-#admin1.wallet.update(balance_cents: 1000)
+admin1.wallet.update(balance_cents: 1000)
 admin2.wallet.update(balance_cents: 1000)
 admin3.wallet.update(balance_cents: 1000)
 admin4.wallet.update(balance_cents: 1000)

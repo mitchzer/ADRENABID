@@ -10,13 +10,7 @@ class AuctionsController < ApplicationController
     @auction = Auction.find(params[:id])
     @bid = Bid.new
     authorize @auction
-    if @auction.bids.count == 0
-    else
-     @user = @auction.winning_user
-
-      # @user = @auction.winning_user
-      # UserMailer.auction_won(@user).deliver_now
-    end
+    @auction.set_auction_status
   end
 
   def new
@@ -28,6 +22,7 @@ class AuctionsController < ApplicationController
 
   def create
     @auction = Auction.new(auction_params)
+    @auction.status = 0
     authorize @auction
     if @auction.save
       redirect_to auction_path(@auction)
