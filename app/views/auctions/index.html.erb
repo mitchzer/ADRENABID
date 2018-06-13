@@ -18,7 +18,7 @@
 
   <div class="featured-auction-info">
     <p style="opacity: 1"> Current number of bids: <%= @auctions.first.bids.count %> </p>
-    <p style="opacity: 1"> Current winning bid: <%= humanized_money_with_symbol(@auctions.first.winning_price) %> </p>
+    <p style="opacity: 1"> Current winning bid: <%= humanized_money_with_symbol(@auctions.first.winning_price.to_f / 100) %></p>
   </div>
 <!--
   <div class="how-it-works-card">
@@ -104,7 +104,7 @@
           <% end %>
             </div>
             <div class="card-price">
-              <%= humanized_money_with_symbol(auction.winning_price) %>
+              <%= humanized_money_with_symbol(auction.winning_price.to_f / 100) %>
 
             </div>
             <img class="card-user" src="">
