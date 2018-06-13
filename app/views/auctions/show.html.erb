@@ -15,7 +15,7 @@
 
     <div class="col-xs-12 col-sm-4">
       <% @auction.photo.url.nil? ?  url = "http://res.cloudinary.com/dylz8qoqc/image/upload/v1527784270/sample.jpg" : url =  @auction.photo.url %>
-      <div class="auction-details" style="background-image: linear-gradient(-225deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.1) 40%), url('<%= cl_image_path url, crop: :fill %>')">
+      <div class="auction-details" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(230,230,230,0.1)), url('<%= cl_image_path url, crop: :fill %>')">
         <div class="stressful-timing"><p class="red">Auction ends in:</p><span id="time"></span>!</div>
         <br>
         <div class="row">
