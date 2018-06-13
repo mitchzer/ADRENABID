@@ -57,7 +57,7 @@ def set_auction_status
   elsif DateTime.now >= self.ending_time && self.status == 1
     self.status = 2
     save
-    UserMailer.auction_won(self.winning_user).deliver_now
+    UserMailer.auction_won(self.winning_user).deliver_now if self.winning_user
   end
 end
 
