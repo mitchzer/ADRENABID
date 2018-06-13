@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row">
+  <div class="row" style="padding: 40px">
     <% if (@user.bids.empty?  || @user.bids.where(won: true).count == 0) %>
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
 
@@ -100,10 +100,10 @@
       <% @user.product_won.each do |bid| %>
       <div class="row">
 
-        <div class="col-xs-12 col-sm-6" style="text-align: center; padding: 80px">
+        <div class="col-xs-12 col-sm-6" style="text-align: center; padding: 40px">
           <p>You just won a <%= bid.auction.product.name %> !!</p>
         </div>
-        <div class="col-xs-12 col-sm-6" style="text-align: center; padding: 80px">
+        <div class="col-xs-12 col-sm-6" style="text-align: center; padding: 40px">
           <% if @user.wallet.balance > bid.price %>
           <%= link_to 'Back to Auctions!!', auctions_path, class: "btn back"%>
           <% else %>
