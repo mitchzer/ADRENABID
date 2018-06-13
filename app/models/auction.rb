@@ -39,24 +39,26 @@ class Auction < ApplicationRecord
   end
 
 # winning_user returns user object
-  def winning_user
-    @bid = winning_bid
-    if @bid
-      @bid.won = true
-      @bid.save
-      @bid.user
+def winning_user
+  @bid = winning_bid
+  if @bid
+    self.bids.where(won: true).each do |bid|
+      bid.update(won: false)
     end
+    @bid.update(won: true)
+    @bid.user
   end
+end
 
-  def set_auction_status
-    if DateTime.now < self.ending_time && DateTime.now > self.starting_time && self.status == 0
-      self.status = 1
-      save
-    elsif DateTime.now >= self.ending_time && self.status == 1
-      self.status = 2
-      save
-      UserMailer.auction_won(self.winning_user).deliver_now
-    end
+def set_auction_status
+  if DateTime.now < self.ending_time && DateTime.now > self.starting_time && self.status == 0
+    self.status = 1
+    save
+  elsif DateTime.now >= self.ending_time && self.status == 1
+    self.status = 2
+    save
+    UserMailer.auction_won(self.winning_user).deliver_now
   end
+end
 
 end
