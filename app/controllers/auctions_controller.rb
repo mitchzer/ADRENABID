@@ -10,13 +10,12 @@ class AuctionsController < ApplicationController
     @auction = Auction.find(params[:id])
     @bid = Bid.new
     authorize @auction
-    # if @auction.status == 2 &&
     if @auction.bids.count == 0
-
     else
-      @user = @auction.winning_user
+     @user = @auction.winning_user
+
       # @user = @auction.winning_user
-      UserMailer.auction_won(@user).deliver_now
+      # UserMailer.auction_won(@user).deliver_now
     end
   end
 

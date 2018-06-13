@@ -2,14 +2,17 @@
   background-color: black;
   font-size: 15px;
   height: 100vh;
-  padding: 80px 60px 80px 60px;
+//  padding: 80px 60px 80px 60px;
   color: white;
+
     h1 {
       text-align: center;
       font-weight: normal;
       font-size: 40px;
       margin-bottom: 50px;
       color: #FFFFF0;
+      text-decoration: underline;
+      text-decoration-color: red;
     }
     .row {
       margin-bottom: 0.5em;
@@ -60,3 +63,43 @@
 .profile-balance-num {
   color: #CD5C5C;
 }
+
+.profile-wrapper {
+padding: 80px 40px 80px 40px;
+}
+ .btn {
+      width: 100%;
+      border: 1px solid;
+      padding: 10px 15px;
+      border-radius: 20px;
+      font-weight: lighter;
+      margin-bottom: 1em;
+    }
+    .recharge {
+      color: #AFEEEE;
+      font-size: 15px;
+      opacity: 0.7;
+      font-weight: normal;
+    }
+    .recharge:hover {
+      color: #AFEEEE;
+      opacity: 1;
+    }
+    .edit {
+      color: #FFDAB9;
+      font-size: 15px;
+      opacity: 0.7;
+    }
+    .edit:hover {
+      color: #FFDAB9;
+      opacity: 1;
+    }
+    .back {
+      color: #FF1883;
+      font-size: 15px;
+      opacity: 0.7;
+    }
+    .back:hover {
+      color: #FF1883;
+      opacity: 1;
+    }
