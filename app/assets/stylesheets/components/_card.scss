@@ -1,12 +1,13 @@
 
 .card {
   height: 225px;
-  width: 350px;
+  width: 100%;
   text-shadow: 0 1px 3px rgba(0,0,0,0.9);
   background-size: cover !important;
   background-position: center;
   color: white;
   position: relative;
+  margin-top: 20px;
 }
 .card-user {
   position: absolute;
@@ -22,6 +23,9 @@
 
 .card:hover .card-category{
   font-size:18px;
+
+  text-decoration: underline;
+  text-decoration-color: red;
 }
 
 
@@ -35,17 +39,26 @@ text-align: center;
   position: absolute;
   top: 10px;
   left: 10px;
-  font-size: 15px;
+  font-size: 18px;
   text-transform: uppercase;
   color: white;
+  background-color: rgba(0,0,0,0.6);
+  padding: 3px;
+  border-radius: 3px;
 }
 .card-description {
   position: absolute;
-  bottom: 10px;
-  left: 10px;
-  text-align: left;
+  bottom: 0px;
+  align-items: center;
+  justify-content: center;
+  // text-align: left;
   font-size: 16px;
+  background-color: red;
+  width: 100%;
+  padding: 10px;
+  text-align: center;
 }
+
 .card-description h2 {
   font-size: 20px;
 }
@@ -66,4 +79,15 @@ text-align: center;
 }
 .card-link:hover {
   opacity: 0.1;
+}
+
+.card-price {
+  font-size: 16px;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  background-color: black;
+  // opacity: 0.6;
+  padding: 6px;
+  // border-radius: 10px;
 }
