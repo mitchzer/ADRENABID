@@ -108,6 +108,14 @@
     <% end %>
     <% end %>
 
+    <div class="row">
+      <div class="currently-wining-message center">
+        <% if @auction.winning_user == current_user %>
+          <p>YOU ARE CURRENLTY WINNING THE AUCTION</p>
+        <% end %>
+      </div>
+    </div>
+
     <% unless array.size == 0 %>
     <div class="currentbids">
       <div class="col-xs-12">
@@ -153,7 +161,6 @@
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
       <div class="auction-details center">
-        <h1><%= @auction.product.name %></h1>
         <p><i>Auction completed on <%= @auction.ending_time.strftime('%x') %></i></p>
         <br>
         <p>Final number of bids: <%= @auction.bids.count %> </p>
@@ -183,10 +190,10 @@
       <div class="col-xs-12">
         <br>
         <% if array.size == 1 %>
-        <h1 class="main-auction-show-title">You had <%= array.size %> bid on this auction:</h1>
+        <h1 class="main-auction-show-title profile-balance-num">You had <%= array.size %> bid on this auction:</h1>
         <br>
         <% elsif %>
-        <h1 class="main-auction-show-title">You had <%= array.size %> bids on this auction:</h1>
+        <h1 class="main-auction-show-title profile-balance-num">You had <%= array.size %> bids on this auction:</h1>
         <br>
         <% end %>
       </div>
