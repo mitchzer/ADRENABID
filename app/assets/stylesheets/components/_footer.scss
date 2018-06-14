@@ -29,3 +29,9 @@
 .footer .fa-heart {
   color: #8C817B;
 }
+@media (max-width: 540px) {
+  .footer {
+    bottom: -100px;
+  }
+
+  }
