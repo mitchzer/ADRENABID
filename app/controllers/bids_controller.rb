@@ -24,6 +24,7 @@ class BidsController < ApplicationController
       if @bid.save
         new_balance = current_user.wallet.balance_cents - @auction.fee_per_bid_cents
         current_user.wallet.update(balance_cents: new_balance)
+        @auction.set_winning_bid
         redirect_to auction_path(@auction)
       else
         redirect_to auction_path(@auction), bid_error: @bid.errors[:price_cents].first

@@ -42,12 +42,15 @@ class Auction < ApplicationRecord
 def winning_user
   @bid = winning_bid
   if @bid
-    self.bids.where(won: true).each do |bid|
-      bid.update(won: false)
-    end
-    @bid.update(won: true)
     @bid.user
   end
+end
+
+def set_winning_bid
+  self.bids.where(won: true).each do |bid|
+    bid.update(won: false)
+  end
+  winning_bid.update(won: true)
 end
 
 def set_auction_status
