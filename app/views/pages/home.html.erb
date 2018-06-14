@@ -93,7 +93,7 @@
      <% if user_signed_in? %>
        <%= link_to "Start bidding now", auctions_path, class: "btn btn-medium btn-home", style: "width: auto"%>
      <% else %>
-       <%= link_to "Start bidding now", new_user_session_path, class: "btn btn-medium btn-home", style: "width: auto" %>
+       <%= link_to "Start bidding now", new_user_registration_path, class: "btn btn-medium btn-home", style: "width: auto" %>
      <% end %>
   </p>
   <br>

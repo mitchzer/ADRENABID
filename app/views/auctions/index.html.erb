@@ -26,9 +26,9 @@
     <p style="background-color: red; text-align: center; align-items: center; ">
 
       <% if @auctions.last.status == 1 %>
-            <span id="banner-timer-<%= @auctions.last.id %>"></span>
+            <span id="banner-timer-<%= @auctions.last.id %>" style="padding:4px;"></span>
           <% else %>
-            <p style="background-color: red; font-size: 40px; text-align: center; align-items: center; "> Sold! </p>
+            <p style="background-color: red; font-size: 40px; text-align: center; align-items: center; padding:4px;"> Sold! </p>
           <% end %> </p>
 <!--
   <span id="auction-timer-<%= @auctions.last.id %>" ></span> remaining!-->
@@ -53,7 +53,7 @@
 </a>
 </div>
 
-<div class="wrapper-grey" style="background-color: black">
+<div class="wrapper-grey" style="background-color: black; margin-top: 30px;">
       <div class="container">
         <div class="row" style="text-align: center;">
            <div class="col-xs-12 col-md-4 " >
@@ -101,7 +101,7 @@
       </div>
 
 <div class="container" id="container-auction-index">
-  <h3 style="text-decoration: underline; text-decoration-color: red; text-align: center">Active Auctions</h3>
+  <h3 style="text-decoration: underline; text-decoration-color: red; text-align: center; margin-top: 50px; margin-bottom: 30px;">Active Auctions</h3>
   <div class="row">
 
         <% @auctions.each do |auction| %>
@@ -144,7 +144,7 @@
 </div>
 
 <div class="container" id="container-auction-index">
-  <h3 style="text-decoration: underline; text-decoration-color: red; text-align: center">Completed Auctions</h3>
+  <h3 style="text-decoration: underline; text-decoration-color: red; text-align: center; margin-top: 50px; margin-bottom: 30px;">Completed Auctions</h3>
   <div class="row">
 
     <% @auctions.each do |auction| %>
