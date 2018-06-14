@@ -10,7 +10,9 @@ class ApplicationController < ActionController::Base
   after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
   add_flash_types :bid_error
 
-
+  def default_url_options
+    { host: ENV['adrenabid.com'] || 'localhost:3000' }
+  end
 
   protected
 
