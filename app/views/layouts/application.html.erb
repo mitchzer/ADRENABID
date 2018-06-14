@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html style= "position: relative; min-height: 100%;">
   <head>
     <%= render 'shared/meta_tags' %>
     <%= csrf_meta_tags %>
@@ -7,7 +7,7 @@
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
   </head>
-  <body>
+  <body style="margin: 0 0 100px;">
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
 
@@ -17,6 +17,7 @@
     <%= javascript_pack_tag 'application' %>
 
     <%= yield :after_js %>
-    <%= render 'shared/footer' %>
   </body>
+
+    <%= render 'shared/footer' %>
 </html>
