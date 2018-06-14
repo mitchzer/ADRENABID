@@ -154,7 +154,7 @@
           <% end %>
             </div>
             <div class="card-price">
-              <%= humanized_money_with_symbol(auction.winning_price) %>
+              <%= humanized_money_with_symbol(auction.winning_price.to_f / 100) %>
             </div>
             <img class="card-user" src="">
             <a class="card-link" <%= link_to auction.product.name, auction_path(auction) %></a>
