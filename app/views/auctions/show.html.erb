@@ -161,13 +161,14 @@
         <div class="auction-details center">
           <p><i>Auction completed on <%= @auction.ending_time.strftime('%x') %></i></p>
           <br>
-          <p>Final number of bids: <%= @auction.bids.count %> </p>
-          <p>Final winning bid price: <% if @auction.bids.count ==0 %>
+           <h3 style="color: red">Winner: <%= @auction.winning_user.username if @auction.winning_user  %></h3>
+          <p> <% if @auction.bids.count ==0 %>
             No bids were made!
             <% else %>
-            <%= humanized_money_with_symbol(@auction.winning_price.to_f / 100) %>
-            <% end %></p>
-            <p>Final winner: <%= @auction.winning_user.username if @auction.winning_user  %></p>
+            <h3 style="color: red">for <%= humanized_money_with_symbol(@auction.winning_price.to_f / 100) %> </p>
+            <% end %></h3>
+          <p>Final number of bids: <%= @auction.bids.count %> </p>
+
           </div>
         </div>
 
