@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row" style="padding: 40px">
-    <% if (@user.bids.empty?  || @user.bids.where(won: true).count == 0) %>
+    <% if (@user.bids.empty?  || @user.product_won.count == 0)  %>
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
 
       <div class="profile">
