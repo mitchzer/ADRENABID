@@ -43,7 +43,7 @@
 
 .featured-auction-category {
   position: relative;
-  top: 10px;
+  top: 50px;
   left: 15px;
   font-size: 50px;
   color: white;
@@ -119,6 +119,15 @@
 
 .featured-auction-info p {
   font-size: 22
+}
+
+.call-to-action-index {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  align-items: center;
+  font-size: 22;
+  color: white;
 }
 
 @media (max-width: 600px) {
