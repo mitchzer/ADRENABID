@@ -32,6 +32,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  border-radius: 10px;
     h1 {
       color: white;
       text-align: center;
@@ -165,8 +166,8 @@
 #wining-bid-price {
   color: red;
   text-align: center;
-  border: 3px solid red;
   background-color: white;
+  font-weight: bolder;
 }
 
 .small-size {
@@ -196,6 +197,7 @@
   font-weight: bolder;
   margin-top: 20px;
   margin-bottom: 20px;
+  border-radius: 10px;
 }
 
 .full-row-selection {
@@ -203,4 +205,27 @@
   color: #2E8B57;
   font-weight: bolder;
   margin: 15px 0px 15px 0px;
+  border-radius: 10px;
+}
+
+.bid-main-stuff {
+  background-color: #F8F8FF;
+  color: black;
+}
+
+.auction-details-photo {
+  margin-top: 10px;
+  // padding: 20px 20px 20px 20px;
+  height: 300px;
+  width: 100%;
+  border-radius: 10px;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.9);
+  background-size: cover !important;
+  background-position: center;
+  color: white;
+  position: relative;
+}
+
+.inter-row-standarization {
+  margin-bottom: 15px !important;
 }
