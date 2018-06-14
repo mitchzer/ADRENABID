@@ -101,6 +101,8 @@
 
       <div class="container">
         <div class="row">
+          <div class="full-row-selection">
+
           <div class="currently-wining-message center">
             <% if @auction.winning_user == current_user %>
             <p>You are currently winning the auction !</p>
@@ -112,6 +114,7 @@
         </div>
       </div>
     </div>
+              </div>
 
     <% unless array.size == 0 %>
     <div class="currentbids">
