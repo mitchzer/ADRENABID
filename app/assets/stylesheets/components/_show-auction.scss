@@ -22,7 +22,7 @@
 }
 
 .auction-details {
-  height: 220px;
+  height: 300px;
   color: white;
   background-color: rgb(20,20,20);
   margin-top: 10px;
@@ -74,6 +74,9 @@
   justify-content: flex-end;
   p, .form-group {
     margin-bottom: 0;
+  }
+  .btn {
+    margin-bottom: 0px;
   }
 }
 
@@ -166,4 +169,25 @@
   text-align: center;
   border: 3px solid red;
   background-color: white;
+}
+
+.small-size {
+  font-size: 20px !important;
+}
+
+.info-message {
+  margin-bottom: 15px;
+  color: #D0D0D0;
+  font-size: 15px;
+}
+
+.info-message-top {
+  color: #D0D0D0;
+  font-size: 15px;
+  margin-bottom: none;
+}
+
+.no-margin-bottom {
+} p {
+  margin: 0px 0px 0px 0px;
 }
