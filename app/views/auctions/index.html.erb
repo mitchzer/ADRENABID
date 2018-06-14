@@ -123,8 +123,8 @@
             <div>Auction not running</div>
           <% end %>
             </div>
-            <div class="card-price">
-              <%= humanized_money_with_symbol(auction.winning_price.to_f / 100) %>
+            <div class="card-price" style="font-size: 14px;">Current price:
+              <span style="font-weight:bold; color: green;"><%= humanized_money_with_symbol(auction.winning_price.to_f / 100) %></span>
 
             </div>
             <img class="card-user" src="">
@@ -156,14 +156,14 @@
         <div>
           <% auction.photo.url.nil? ?  url = "https://assets.wired.com/photos/w_1164/wp-content/uploads/2017/11/iphonex-TA.jpg" : url = auction.photo.url %>
 
-          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(230,230,230,0.1)), url('<%= cl_image_path url, crop: :fill %>')">
+          <div class="card" style="opacity: 0.5; background-image: linear-gradient(rgba(0,0,0,0.1), rgba(230,230,230,0.1)), url('<%= cl_image_path url, crop: :fill %>')">
 
             <div class="card-category"><%= auction.product.name %></div>
             <div class="card-description">
               <% if auction.status == 1 %>
             <div><span id="auction-timer-<%= auction.id %>"></span></div>
           <% else %>
-            <div>SOLD!</div>
+            <div>SOLD for <%= humanized_money_with_symbol(auction.winning_price.to_f / 100) %>!</div>
           <% end %>
             </div>
             <div class="card-price">
