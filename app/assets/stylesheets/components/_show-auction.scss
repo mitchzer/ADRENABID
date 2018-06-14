@@ -148,8 +148,6 @@
 }
 
 .currently-wining-message {
-  text-decoration: underline;
-  text-decoration-color: red;
   text-align: center;
   font-size: 31px;
   margin-top: 25px;
@@ -198,4 +196,11 @@
   font-weight: bolder;
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.full-row-selection {
+  background-color: #98FB98;
+  color: #2E8B57;
+  font-weight: bolder;
+  margin: 15px 0px 15px 0px;
 }
