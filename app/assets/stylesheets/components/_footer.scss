@@ -1,7 +1,8 @@
 .footer {
   background-color: none;
-  position: relative;
+  position: absolute;
   bottom: 0;
+  left: 0;
   width: 100%;
   display: flex;
   align-items: center;
@@ -9,6 +10,7 @@
   height: 70px;
   padding: 0px 50px;
   color: #8C817B; //rgb(20,20,20);
+  overflow: hidden;
 }
 .footer-links {
   display: flex;
