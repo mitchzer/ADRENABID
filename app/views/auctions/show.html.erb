@@ -1,8 +1,8 @@
 <div class="wrapper_new">
   <div class="container">
 
-    <h1 class="main-auction-show-title"><%= @auction.product.name %></h1>
-    <p class="center">Recomended Retail Price: <%= humanized_money_with_symbol(@auction.product.recommended_retail_price) %></p>
+    <h1 class="main-auction-show-title red-underline"><%= @auction.product.name %></h1>
+    <p class="center">Recomended Retail Price: <%= money_without_cents(@auction.product.recommended_retail_price) %> €</p>
 
     <% if @auction.status == 1 %>
 
@@ -16,9 +16,9 @@
 
           <p>Current number of bids:</p>
           <% if @auction.bids.count <= 1 %>
-          <p><%= @auction.bids.count %> bid</p>
+          <p class="bold"><%= @auction.bids.count %> bid</p>
           <% else %>
-          <p><%= @auction.bids.count %> bids</p>
+          <p class="bold"><%= @auction.bids.count %> bids</p>
           <% end %>
         </div>
 
@@ -26,7 +26,7 @@
       <div class="col-xs-12 col-sm-6 center">
         <div class="bid-item bid-main-stuff">
 
-          <p>Current winning price bid:</p>
+          <p>Current winning bid:</p>
           <% if @auction.bids.count == 0 || @auction.winning_user.nil? %>
           <p>No bid, no winning price !</p>
           <% else %>
@@ -54,7 +54,7 @@
         <div class="auction-details">
 
           <div class="col-xs-12 center info-message-top">
-            <p><i>Bid in cents units, not in euro units (1 euro = 100 cents)</i></p>
+            <p><i>Bid in <u>cents</u>, not in euros (1 euro = 100 cents)</i></p>
           </div>
 
           <div class="row centering form">
@@ -64,7 +64,7 @@
                 <%= f.input :price_cents, placeholder: "Cents", label: false %>
               </div>
               <div class="col-xs-12 col-md-4">
-                <%= f.submit "Place a bid!", class: "btn btn-primary" %>
+                <%= f.submit "Place a bid !", class: "btn btn-primary" %>
               </div>
               <% end %>
             </div>
@@ -74,15 +74,23 @@
 
             <div class="col-xs-6 center">
               <div class="bid-item">
-                <p>Price of one bid:</p>
-                <p><%= humanized_money_with_symbol(@auction.fee_per_bid) %></p>
+                <p>Fee per bid:</p>
+                <% if @auction.price_step_cents == 1 %>
+                  <p><%= @auction.fee_per_bid_cents %> cent</p>
+                <% else %>
+                  <p><%= @auction.fee_per_bid_cents %> cents</p>
+                <% end %>
               </div>
             </div>
 
             <div class="col-xs-6 center">
               <div class="bid-item <%= "red" if bid_error == "Must be a proper mutliple of #{(@auction.price_step.to_f*100).to_i} cents" %>">
-                <p>Your can bid every:</p>
-                <p><%= humanized_money_with_symbol(@auction.price_step) %></p>
+                <p>You can bid in increments of:</p>
+                <% if @auction.price_step_cents == 1 %>
+                  <p><%= @auction.price_step_cents %> cent</p>
+                <% else %>
+                  <p><%= @auction.price_step_cents %> cents</p>
+                <% end %>
               </div>
             </div>
 
@@ -105,10 +113,10 @@
 
             <div class="currently-wining-message center">
               <% if @auction.winning_user == current_user %>
-              <p>You are currently winning the auction !</p>
+              <p style="font-weight: bolder;">You are currently winning the auction !</p>
             </div>
             <div class="center no-margin-bottom">
-              <p>But it could change if someone bids the current winning price</p>
+              <p>But that could change if someone bids the current winning bid</p>
             </div>
             <% end %>
           </div>
@@ -132,7 +140,7 @@
       <div class="currentbids-prices">
         <div class="row">
           <div class="col-xs-4 price-table-header left">Bid price</div>
-          <div class="col-xs-4 price-table-header center">Created at</div>
+          <div class="col-xs-4 price-table-header center">Placed at</div>
           <div class="col-xs-4 price-table-header right">Bid id</div>
         </div>
         <% array.each do |bid| %>

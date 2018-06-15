@@ -156,6 +156,9 @@
   font-family: "Raleway", "Helvetica", "sans-serif";
   font-weight: 500;
   line-height: 1.1;
+  padding-top: 10px;
+} p {
+  padding-bottom: 10px;
 }
 
 .bid-data {
@@ -166,7 +169,6 @@
 #wining-bid-price {
   color: red;
   text-align: center;
-  background-color: white;
   font-weight: bolder;
 }
 
@@ -228,4 +230,13 @@
 
 .inter-row-standarization {
   margin-bottom: 15px !important;
+}
+
+.bold {
+  font-weight: bolder;
+}
+
+.red-underline {
+  text-decoration: underline;
+  text-decoration-color: red;
 }
