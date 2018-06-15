@@ -1,9 +1,17 @@
 <div class="navbar-wagon">
   <!-- Logo -->
-  <%= link_to auctions_path, class: "navbar-wagon-brand" do %>
-  <%= image_tag "adrenabid.svg", height: 50 %>
-  <% end %>
 
+  <% if user_signed_in? %>
+
+    <%= link_to auctions_path, class: "navbar-wagon-brand" do %>
+      <%= image_tag "adrenabid.svg", height: 50 %>
+    <% end %>
+
+  <% else %>
+    <%= link_to new_user_session_path, class: "navbar-wagon-brand" do %>
+      <%= image_tag "adrenabid.svg", height: 50 %>
+     <% end %>
+  <% end %>
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
 
