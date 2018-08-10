@@ -19,6 +19,7 @@ product1 = Product.create!(name:"IPhone X", recommended_retail_price_cents:  120
 product2 = Product.create!(name: "Applewatch", recommended_retail_price_cents: 37900)
 product3 = Product.create!(name:"Rolex", recommended_retail_price_cents: 590000)
 product4 = Product.create!(name:"6 Cold Beers", recommended_retail_price_cents: 600)
+product5 = Product.create!(name:"A webdeveloper for Vinterior", recommended_retail_price_cents: 1000000)
 
 # user1 = User.create!(username:"ally", email:"ally@gmail.com", address:"Cap Town", password: "password")
 # user2 = User.create!(username:"andreia", email:"andreia@gmail.com", address:"Lisbon", password: "password")
